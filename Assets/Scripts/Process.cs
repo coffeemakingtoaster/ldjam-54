@@ -23,11 +23,15 @@ public class Process : ScriptableObject
     private Animator animator;
     
     
-    public void awake(GameObject machine)
+    public void awake()
     {
         
-        animator = machine.GetComponent<Animator>();
-        for(int i = 0; i < inputItems.Length; i++)
+        
+        isProcessing = false;
+        inputCount = 0;
+        outputCount = 0;
+
+        for (int i = 0; i < inputItems.Length; i++)
         {
             
             Input.Add(inputItems[i], inputItemCount[i]);
@@ -39,23 +43,28 @@ public class Process : ScriptableObject
             Output.Add(outputItems[i], outputItemCount[i]);
             outputCount += outputItemCount[i];
         }
+        Debug.Log(outputCount);
     }
-    public void process(ref Dictionary<GameObject, int> InInventory,ref Dictionary<GameObject, int> OutInventory,ref int OutInventorySize,ref int InInventorySize)
+    public void process(ref Dictionary<GameObject, int> InInventory,ref Dictionary<GameObject, int> OutInventory,ref int OutInventorySize,GameObject machine,ref int currentInInvSize,ref int currentOutInvSize)
     {
-        if(OutInventory.Count < (OutInventorySize - outputCount) && !isProcessing && gotInputs(InInventory))
+
+
+        
+        //change to correct
+        if(currentOutInvSize <= (OutInventorySize - outputCount) && !isProcessing && gotInputs(InInventory))
         {
+            Debug.Log(gotInputs(InInventory));
+            animator = machine.GetComponent<Animator>();
+            
             isProcessing = true;
             foreach (KeyValuePair<GameObject, int> input in Input)
             {
-                foreach (KeyValuePair<GameObject, int> inInv in InInventory)
-                {
-                    if (inInv.Key == input.Key)
-                    {
-                        InInventory[inInv.Key] = inInv.Value - input.Value;
-                    }
-                }
+      
+              InInventory[input.Key] -= input.Value;
+
             }
-            InInventorySize -= inputCount;
+            currentInInvSize -= inputCount;
+            
             animator.SetTrigger(name);
         }
     }
@@ -88,26 +97,24 @@ public class Process : ScriptableObject
 
     }
 
-    public void finishProcess(ref Dictionary<GameObject, int> InInventory, ref Dictionary<GameObject, int> OutInventory, ref int OutInventorySize)
+    public void finishProcess(ref Dictionary<GameObject, int> InInventory, ref Dictionary<GameObject, int> OutInventory, ref int currentOutInvSize)
     {
+        
         foreach(KeyValuePair<GameObject, int> output in Output)
         {
-            bool keyPresent = false;
-            foreach(KeyValuePair<GameObject,int> outInv in OutInventory)
+            if (OutInventory.ContainsKey(output.Key))
             {
-                if(outInv.Key == output.Key)
-                {
-                    OutInventory[outInv.Key] = outInv.Value + output.Value;
-                    keyPresent = true;
-                }
-                
+                OutInventory[output.Key] += output.Value;
             }
-            if (!keyPresent)
+            else
             {
                 OutInventory.Add(output.Key, output.Value);
             }
+
+       
+
         }
-        OutInventorySize += outputCount;
+        currentOutInvSize += outputCount;
 
         isProcessing = false;
 

@@ -39,6 +39,11 @@ public class GridData
         List<Vector3Int> positionToOccupy = CalculatePositions(gridPosition, objectSize);
         foreach (var pos in positionToOccupy)
         {
+            
+            if (MapArray.map[34 - pos.x,49 - pos.z] == 0)
+            {
+                return false;
+            }
             if (placedObjects.ContainsKey(pos))
             {
                 return false;

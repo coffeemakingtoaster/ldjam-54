@@ -299,6 +299,7 @@ MonoBehaviour:
   InInventoryPoint: {fileID: 5376186553415731161}
   OutInventoryPoint: {fileID: 1855072773231365858}
   isProcessing: 0
+  tomato: {fileID: 1782086476044112499, guid: 54034cacb2df2fd45bec18715ac0fbe9, type: 3}
   CurrentInInvSize: 0
   CurrentOutInvSize: 0
 --- !u!95 &4867671534606111501

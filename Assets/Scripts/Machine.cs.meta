@@ -3,7 +3,11 @@ guid: 136b47f4797c1b64987741f0b2426415
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - activeProcess: {instanceID: 0}
+  - InInventoryPoint: {instanceID: 0}
+  - OutInventoryPoint: {instanceID: 0}
+  - tomato: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

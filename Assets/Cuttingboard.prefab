@@ -111,12 +111,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InInventorySize: 5
-  OutInventorySize: 5
+  OutInventorySize: 10
   processes:
   - {fileID: 11400000, guid: b3633bdd0dce2c0499c2552e4fc30e4a, type: 2}
   activeProcess: {fileID: 11400000, guid: b3633bdd0dce2c0499c2552e4fc30e4a, type: 2}
   InInventoryPoint: {fileID: 152218035078813529}
   OutInventoryPoint: {fileID: 864321577301937504}
+  tomato: {fileID: 1782086476044112499, guid: 54034cacb2df2fd45bec18715ac0fbe9, type: 3}
 --- !u!95 &1766815135630243805
 Animator:
   serializedVersion: 5

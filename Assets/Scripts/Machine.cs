@@ -12,15 +12,26 @@ public class Machine : MonoBehaviour
     public Process activeProcess;
     public GameObject InInventoryPoint;
     public GameObject OutInventoryPoint;
+    
+    //public GameObject tomato;
+
+    public int CurrentInInvSize = 0;
+    public int CurrentOutInvSize = 0;
 
     public void Start()
     {
-        activeProcess.awake(gameObject);
+      //InInventory.Add(tomato, 4);
+      //CurrentInInvSize = 4;
     }
     public void Update()
     {
         
-        activeProcess.process(ref InInventory, ref OutInventory,ref OutInventorySize,ref InInventorySize);
+        activeProcess.process(ref InInventory, ref OutInventory,ref OutInventorySize,gameObject,ref CurrentInInvSize,ref CurrentOutInvSize);
     }
 
+    public void endAnim()
+    {
+        Debug.Log("Endanim");
+        activeProcess.finishProcess(ref InInventory, ref OutInventory, ref CurrentOutInvSize);
+    }
 }

@@ -15,6 +15,8 @@ public class TrainTrack : MonoBehaviour
     public bool isCurve;
     public float GRID_SIZE = 0.1f;
 
+    public bool flipsDirection = false;
+
     public void TryToConnectToTrainTracks()
     {
         TrainTrack[] trainTracks = FindObjectsOfType<TrainTrack>();
@@ -25,6 +27,7 @@ public class TrainTrack : MonoBehaviour
                 Debug.Log("Self");
                 continue;
             }
+
             Debug.Log("Own: Entrypoint: \t" + entryPoint.transform.position.ToString() + "\t ExitPoint: " + exitPoint.transform.position.ToString());
             Debug.Log("Other: Entrypoint: \t" + transform.TransformPoint(externalTrainTrack.entryPoint.transform.position).ToString() + "\t ExitPoint: " + transform.TransformPoint(externalTrainTrack.exitPoint.transform.position).ToString());
             Debug.Log(Vector3.Distance(entryPoint.transform.position, externalTrainTrack.exitPoint.transform.position));
@@ -39,6 +42,7 @@ public class TrainTrack : MonoBehaviour
                 }
                 continue;
             }
+
             // Is traintrack before the current?                
             Debug.Log(Vector3.Distance(exitPoint.transform.position, externalTrainTrack.entryPoint.transform.position));
             if (Vector3.Distance(exitPoint.transform.position, externalTrainTrack.entryPoint.transform.position) < 0.01f)
@@ -52,6 +56,35 @@ public class TrainTrack : MonoBehaviour
                 }
                 continue;
             }
+
+            // Are traintracks butt to butt?
+            Debug.Log(Vector3.Distance(exitPoint.transform.position, externalTrainTrack.exitPoint.transform.position));
+            if (Vector3.Distance(exitPoint.transform.position, externalTrainTrack.exitPoint.transform.position) < 0.01f)
+            {
+                if (externalTrainTrack.nextTrainTrack == null)
+                {
+                    Debug.Log("Flipping");
+                    nextTrainTrack = externalTrainTrack;
+                    externalTrainTrack.nextTrainTrack = this;
+                    flipsDirection = true;
+                    externalTrainTrack.flipsDirection = true;
+                }
+            }
+
+            // Are traintracks mouth to mouth?
+            Debug.Log(Vector3.Distance(entryPoint.transform.position, externalTrainTrack.entryPoint.transform.position));
+            if (Vector3.Distance(entryPoint.transform.position, externalTrainTrack.entryPoint.transform.position) < 0.01f)
+            {
+                if (externalTrainTrack.previousTrainTrack == null)
+                {
+                    Debug.Log("Flipping");
+                    previousTrainTrack = externalTrainTrack;
+                    externalTrainTrack.previousTrainTrack = this;
+                    flipsDirection = true;
+                    externalTrainTrack.flipsDirection = true;
+                }
+            }
+
             Debug.Log("No Match");
         }
     }
@@ -59,6 +92,10 @@ public class TrainTrack : MonoBehaviour
     public TrainTrack GetNextTrainTrack()
     {
         return nextTrainTrack;
+    }
+
+    public TrainTrack GetPreviousTrainTrack(){
+        return previousTrainTrack;
     }
 
     public void SetPreviousTrainTrack(TrainTrack track)

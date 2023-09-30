@@ -23,8 +23,8 @@ MonoBehaviour:
     <Size>k__BackingField: {x: 1, y: 1}
     <Prefab>k__BackingField: {fileID: 4398005425921824447, guid: f7c4a61f8598cc24abb44c8f53632da7,
       type: 3}
-  - <Name>k__BackingField: Curve
+  - <Name>k__BackingField: Cuttingboard
     <ID>k__BackingField: 2
-    <Size>k__BackingField: {x: 1, y: 1}
-    <Prefab>k__BackingField: {fileID: 660707435527058334, guid: bdb71f63cc71f19439f39f09e254d5ba,
+    <Size>k__BackingField: {x: 3, y: 2}
+    <Prefab>k__BackingField: {fileID: 6986504877791881708, guid: cdcf76507f8f83945a908ffc2ca65c4a,
       type: 3}

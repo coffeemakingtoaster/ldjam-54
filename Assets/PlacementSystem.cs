@@ -13,6 +13,7 @@ public class PlacementSystem : MonoBehaviour
     private Grid grid;
     [SerializeField]
     private ObjectsDatabaseSO database;
+    
     private int selectedObjectIndex = -1;
 
     [SerializeField]
@@ -69,33 +70,11 @@ public class PlacementSystem : MonoBehaviour
         placedGameObject.Add(newObject);
         GridData selectedData = furnitureData;
         //GridData selectedData = database.objectsData[selectedObjectIndex].ID == 0 ? floorData : furnitureData;
-        selectedData.AddObject(gridPosition, database.objectsData[selectedObjectIndex].Size, database.objectsData[selectedObjectIndex].ID, placedGameObject.Count - 1);
+        selectedData.AddObject(gridPosition, database.objectsData[selectedObjectIndex].Size, database.objectsData[selectedObjectIndex].ID, placedGameObject.Count - 1, database.objectsData[selectedObjectIndex].Prefab);
     }
 
 
-    private void PlaceGameStructure()
-    {
-        if (inputManager.IsPointerOverUI())
-        {
-            return;
-        }
-        Vector3 mousePosition = inputManager.GetSelectedMapPosition();
-        Vector3Int gridPosition = grid.WorldToCell(mousePosition);
-        print(gridPosition);
-
-        bool placementValidity = CheckPlacementValidity(gridPosition, selectedObjectIndex);
-        if (placementValidity == false)
-        {
-            return;
-        }
-
-        GameObject newObject = Instantiate(database.objectsData[selectedObjectIndex].Prefab);
-        newObject.transform.position = grid.CellToWorld(gridPosition);
-        placedGameObject.Add(newObject);
-        GridData selectedData = furnitureData;
-        //GridData selectedData = database.objectsData[selectedObjectIndex].ID == 0 ? floorData : furnitureData;
-        selectedData.AddObject(gridPosition, database.objectsData[selectedObjectIndex].Size, database.objectsData[selectedObjectIndex].ID, placedGameObject.Count - 1);
-    }
+  
 
     private bool CheckPlacementValidity(Vector3Int gridPosition, int selectedObjectIndex)
     {

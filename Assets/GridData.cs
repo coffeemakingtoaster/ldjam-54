@@ -7,10 +7,10 @@ public class GridData
 {
     Dictionary<Vector3Int, PlacementData> placedObjects = new();
 
-    public void AddObject(Vector3Int gridPosition, Vector2Int objectSize, int ID, int placedObjectIndex)
+    public void AddObject(Vector3Int gridPosition, Vector2Int objectSize, int ID, int placedObjectIndex,GameObject placedObject)
     {
         List<Vector3Int> positionToOccupy = CalculatePositions(gridPosition, objectSize);
-        PlacementData data = new PlacementData(positionToOccupy,ID,placedObjectIndex);
+        PlacementData data = new PlacementData(positionToOccupy,ID,placedObjectIndex,placedObject);
         foreach(var position in positionToOccupy)
         {
             if (placedObjects.ContainsKey(position))
@@ -51,13 +51,16 @@ public class PlacementData
 {
     public List<Vector3Int> occupiedPositions;
 
-    public PlacementData(List<Vector3Int> occupiedPositions, int iD, int placedObjectIndex)
+    public PlacementData(List<Vector3Int> occupiedPositions, int iD, int placedObjectIndex, GameObject placedObject)
     {
         this.occupiedPositions = occupiedPositions;
         ID = iD;
         PlacedObjectIndex = placedObjectIndex;
+        PlacedObject = placedObject;
     }
 
     public int ID { get; private set; }
     public int PlacedObjectIndex { get; private set; }
+
+    public GameObject PlacedObject { get; private set; }
 }

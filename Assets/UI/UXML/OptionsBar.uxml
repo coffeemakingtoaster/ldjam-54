@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="options-bar" style="align-self: flex-end; flex-direction: row; padding-top: 20px; padding-right: 20px;">
+        <ui:Button text="?" display-tooltip-when-elided="true" name="ButtonHowTo" class="button-orange info-bottom-button" />
+        <ui:Button display-tooltip-when-elided="true" name="ButtonSettings" class="button-orange info-bottom-button" style="background-image: url(&apos;project://database/Assets/UI/Textures/Icons/SettingsGear.png?fileID=2800000&amp;guid=646d977889c6fd24f9154fd2497899ee&amp;type=3#SettingsGear&apos;); -unity-background-scale-mode: scale-to-fit; background-color: rgba(56, 56, 56, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; border-top-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; border-bottom-left-radius: 0;" />
+        <ui:Button text="X" display-tooltip-when-elided="true" name="ButtonExit" class="button-orange info-bottom-button" />
+    </ui:VisualElement>
+</ui:UXML>

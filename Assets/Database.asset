@@ -13,8 +13,18 @@ MonoBehaviour:
   m_Name: Database
   m_EditorClassIdentifier: 
   objectsData:
-  - <Name>k__BackingField: Track
+  - <Name>k__BackingField: Void
     <ID>k__BackingField: 0
+    <Size>k__BackingField: {x: 10, y: 10}
+    <Prefab>k__BackingField: {fileID: 1315869784183618470, guid: bb450b2b1c2e6e94881a78db0ae62e43,
+      type: 3}
+  - <Name>k__BackingField: Track
+    <ID>k__BackingField: 1
     <Size>k__BackingField: {x: 1, y: 1}
     <Prefab>k__BackingField: {fileID: 4398005425921824447, guid: f7c4a61f8598cc24abb44c8f53632da7,
+      type: 3}
+  - <Name>k__BackingField: Curve
+    <ID>k__BackingField: 2
+    <Size>k__BackingField: {x: 1, y: 1}
+    <Prefab>k__BackingField: {fileID: 660707435527058334, guid: bdb71f63cc71f19439f39f09e254d5ba,
       type: 3}

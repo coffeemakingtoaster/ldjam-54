@@ -27,7 +27,7 @@ public class Process : ScriptableObject
     {
         
         
-        isProcessing = false;
+        
         inputCount = 0;
         outputCount = 0;
 
@@ -45,7 +45,7 @@ public class Process : ScriptableObject
         }
         Debug.Log(outputCount);
     }
-    public void process(ref Dictionary<GameObject, int> InInventory,ref Dictionary<GameObject, int> OutInventory,ref int OutInventorySize,GameObject machine,ref int currentInInvSize,ref int currentOutInvSize)
+    public void process(ref Dictionary<GameObject, int> InInventory,ref Dictionary<GameObject, int> OutInventory,ref int OutInventorySize,GameObject machine,ref int currentInInvSize,ref int currentOutInvSize,ref bool isProcessing)
     {
 
 

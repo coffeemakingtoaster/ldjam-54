@@ -13,7 +13,7 @@ public class Machine : MonoBehaviour
     public GameObject InInventoryPoint;
     public GameObject OutInventoryPoint;
 
-    public bool isProcessing;
+    public bool isProcessing = false;
     
     //public GameObject tomato;
 

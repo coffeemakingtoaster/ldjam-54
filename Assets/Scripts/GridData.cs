@@ -7,11 +7,11 @@ public class GridData
 {
     Dictionary<Vector3Int, PlacementData> placedObjects = new();
 
-    public void AddObject(Vector3Int gridPosition, Vector2Int objectSize, int ID, int placedObjectIndex,GameObject placedObject)
+    public void AddObject(Vector3Int gridPosition, Vector2Int objectSize, int ID, int placedObjectIndex, GameObject placedObject)
     {
         List<Vector3Int> positionToOccupy = CalculatePositions(gridPosition, objectSize);
-        PlacementData data = new PlacementData(positionToOccupy,ID,placedObjectIndex,placedObject);
-        foreach(var position in positionToOccupy)
+        PlacementData data = new PlacementData(positionToOccupy, ID, placedObjectIndex, placedObject);
+        foreach (var position in positionToOccupy)
         {
             if (placedObjects.ContainsKey(position))
             {
@@ -24,9 +24,9 @@ public class GridData
     private List<Vector3Int> CalculatePositions(Vector3Int gridPosition, Vector2Int objectSize)
     {
         List<Vector3Int> returnVal = new();
-        for(int x = 0; x < objectSize.x; x++)
+        for (int x = 0; x < objectSize.x; x++)
         {
-            for(int y = 0; y < objectSize.y; y++)
+            for (int y = 0; y < objectSize.y; y++)
             {
                 returnVal.Add(gridPosition + new Vector3Int(x, 0, y));
             }
@@ -37,7 +37,7 @@ public class GridData
     public bool CanPlaceObjectAt(Vector3Int gridPosition, Vector2Int objectSize)
     {
         List<Vector3Int> positionToOccupy = CalculatePositions(gridPosition, objectSize);
-        foreach(var pos in positionToOccupy)
+        foreach (var pos in positionToOccupy)
         {
             if (placedObjects.ContainsKey(pos))
             {
@@ -45,6 +45,19 @@ public class GridData
             }
         }
         return true;
+    }
+
+    public GameObject GetObjectAtGridPosition(Vector3Int gridPosition)
+    {
+        List<Vector3Int> positionToOccupy = CalculatePositions(gridPosition, new Vector2Int(1,1));
+        foreach (var pos in positionToOccupy)
+        {
+            if (placedObjects.ContainsKey(pos))
+            {
+                return placedObjects[pos].PlacedObject;
+            }
+        }
+        return null;
     }
 }
 public class PlacementData

@@ -2,18 +2,19 @@ using UnityEngine;
 
 public class TrainLocomotive : MonoBehaviour
 {
-    public TrainTrack nextTrainTrack;
+    public TrainTrack currentTrainTrack;
     public float SPEED = 5f;
 
     bool isInTrackTile = false;
 
     float rotatedAngle = 0;
 
+    public bool isDrivingInReverse = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        transform.LookAt(nextTrainTrack.entryPoint.transform.position);
+        transform.LookAt(currentTrainTrack.entryPoint.transform.position);
     }
 
     // Update is called once per frame
@@ -32,12 +33,18 @@ public class TrainLocomotive : MonoBehaviour
             }
             else
             {
-                TrainTrack nextPossibleTrack = nextTrainTrack.GetNextTrainTrack();
-                Debug.Log("Find next");
+                TrainTrack nextPossibleTrack = currentTrainTrack.GetNextTrainTrack();
+                if (isDrivingInReverse){
+                    nextPossibleTrack = currentTrainTrack.GetPreviousTrainTrack();
+                }
                 // Is next defined?
                 if (nextPossibleTrack != null)
                 {
-                    nextTrainTrack = nextPossibleTrack;
+                    if (nextPossibleTrack.flipsDirection && currentTrainTrack.flipsDirection)
+                    {
+                        isDrivingInReverse = !isDrivingInReverse;
+                    }
+                    currentTrainTrack = nextPossibleTrack;
                     isInTrackTile = false;
                     rotatedAngle = 0f;
                 }
@@ -45,18 +52,18 @@ public class TrainLocomotive : MonoBehaviour
         }
         else
         {
-            if (isInTrackTile && nextTrainTrack.isCurve)
-            {
-                transform.RotateAround(nextTrainTrack.rotatePoint.transform.position, Vector3.up, -50f * Time.deltaTime);
-                rotatedAngle += Mathf.Abs(-10f * Time.deltaTime);
-            }
-            else
-            {
-                Vector3 lookVector = (targetPosition - transform.position).normalized;
-                Quaternion toRotation = Quaternion.LookRotation(lookVector);
-                transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, Time.deltaTime);
-                transform.localPosition = Vector3.MoveTowards(transform.localPosition, targetPosition, SPEED * Time.deltaTime);
-            }
+            //  if (isInTrackTile && nextTrainTrack.isCurve)
+            //  {
+            //      transform.RotateAround(nextTrainTrack.rotatePoint.transform.position, Vector3.up, -50f * Time.deltaTime);
+            //      rotatedAngle += Mathf.Abs(-10f * Time.deltaTime);
+            //  }
+            //  else
+            //  {
+            Vector3 lookVector = (targetPosition - transform.position).normalized;
+            Quaternion toRotation = Quaternion.LookRotation(lookVector);
+            transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, Time.deltaTime);
+            transform.localPosition = Vector3.MoveTowards(transform.localPosition, targetPosition, SPEED * Time.deltaTime);
+            //}
         }
     }
 
@@ -64,10 +71,20 @@ public class TrainLocomotive : MonoBehaviour
     {
         if (isInTrackTile)
         {
+            if (isDrivingInReverse)
+            {
+                Debug.Log("Target entrypoint");
+                return currentTrainTrack.entryPoint.transform.position;
+            }
             Debug.Log("Target exitpoint");
-            return nextTrainTrack.exitPoint.transform.position;
+            return currentTrainTrack.exitPoint.transform.position;
+        }
+        if (isDrivingInReverse)
+        {
+            Debug.Log("Target exitpoint");
+            return currentTrainTrack.exitPoint.transform.position;
         }
         Debug.Log("Target entrypoint");
-        return nextTrainTrack.entryPoint.transform.position;
+        return currentTrainTrack.entryPoint.transform.position;
     }
 }

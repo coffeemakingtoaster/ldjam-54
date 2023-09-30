@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlacementSystem : MonoBehaviour
@@ -13,7 +14,7 @@ public class PlacementSystem : MonoBehaviour
     private Grid grid;
     [SerializeField]
     private ObjectsDatabaseSO database;
-    
+
     private int selectedObjectIndex = -1;
 
     [SerializeField]
@@ -38,7 +39,7 @@ public class PlacementSystem : MonoBehaviour
     {
         StopPlacement();
         selectedObjectIndex = database.objectsData.FindIndex(data => data.ID == ID);
-        if(selectedObjectIndex < 0)
+        if (selectedObjectIndex < 0)
         {
             Debug.LogError($"No ID found{ID}");
             return;
@@ -60,7 +61,7 @@ public class PlacementSystem : MonoBehaviour
         print(gridPosition);
 
         bool placementValidity = CheckPlacementValidity(gridPosition, selectedObjectIndex);
-        if(placementValidity == false)
+        if (placementValidity == false)
         {
             return;
         }
@@ -71,10 +72,17 @@ public class PlacementSystem : MonoBehaviour
         GridData selectedData = furnitureData;
         //GridData selectedData = database.objectsData[selectedObjectIndex].ID == 0 ? floorData : furnitureData;
         selectedData.AddObject(gridPosition, database.objectsData[selectedObjectIndex].Size, database.objectsData[selectedObjectIndex].ID, placedGameObject.Count - 1, database.objectsData[selectedObjectIndex].Prefab);
+        if (newObject.GetComponent<TrainTrack>() != null)
+        {
+            this.UpdateTraintracks(gridPosition, newObject);
+        }
     }
 
-
-  
+    private void UpdateTraintracks(Vector3Int gridPosition, GameObject trackObject)
+    {
+        TrainTrack[] GlobalTrainTracks = FindObjectsOfType<TrainTrack>();
+        trackObject.GetComponent<TrainTrack>().TryToConnectToTrainTracks();
+    }
 
     private bool CheckPlacementValidity(Vector3Int gridPosition, int selectedObjectIndex)
     {
@@ -97,11 +105,11 @@ public class PlacementSystem : MonoBehaviour
         {
             return;
         }
-        
+
         Vector3 mousePosition = inputManager.GetSelectedMapPosition();
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
 
-        
+
 
         bool placementValidity = CheckPlacementValidity(gridPosition, selectedObjectIndex);
         previewRenderer.material.color = placementValidity ? Color.white : Color.red;

@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TrainTrack : MonoBehaviour
@@ -17,6 +18,8 @@ public class TrainTrack : MonoBehaviour
 
     public bool flipsDirection = false;
 
+    public bool isInSwitch = true;
+
     public void TryToConnectToTrainTracks()
     {
         TrainTrack[] trainTracks = FindObjectsOfType<TrainTrack>();
@@ -28,9 +31,21 @@ public class TrainTrack : MonoBehaviour
                 continue;
             }
 
-            Debug.Log("Own: Entrypoint: \t" + entryPoint.transform.position.ToString() + "\t ExitPoint: " + exitPoint.transform.position.ToString());
-            Debug.Log("Other: Entrypoint: \t" + transform.TransformPoint(externalTrainTrack.entryPoint.transform.position).ToString() + "\t ExitPoint: " + transform.TransformPoint(externalTrainTrack.exitPoint.transform.position).ToString());
-            Debug.Log(Vector3.Distance(entryPoint.transform.position, externalTrainTrack.exitPoint.transform.position));
+            if (externalTrainTrack.gameObject.layer == LayerMask.NameToLayer("Ignore Raycast")){
+                Debug.Log("Visualization");
+                continue;
+            }
+
+            // If is further than 0.1 away => no adjacent grid tile
+            //if (Vector3.Distance(transform.position, externalTrainTrack.transform.position) > 0.11f)
+            //{
+            //    Debug.Log("Not adjacent");
+            //    continue;
+            //}
+
+            //Debug.Log("Own: Entrypoint: \t" + entryPoint.transform.position.ToString() + "\t ExitPoint: " + exitPoint.transform.position.ToString());
+            //Debug.Log("Other: Entrypoint: \t" + transform.TransformPoint(externalTrainTrack.entryPoint.transform.position).ToString() + "\t ExitPoint: " + transform.TransformPoint(externalTrainTrack.exitPoint.transform.position).ToString());
+            //Debug.Log(Vector3.Distance(entryPoint.transform.position, externalTrainTrack.exitPoint.transform.position));
             if (Vector3.Distance(entryPoint.transform.position, externalTrainTrack.exitPoint.transform.position) < 0.01f)
             {
                 // Is not already connected to something else
@@ -44,7 +59,7 @@ public class TrainTrack : MonoBehaviour
             }
 
             // Is traintrack before the current?                
-            Debug.Log(Vector3.Distance(exitPoint.transform.position, externalTrainTrack.entryPoint.transform.position));
+            //Debug.Log(Vector3.Distance(exitPoint.transform.position, externalTrainTrack.entryPoint.transform.position));
             if (Vector3.Distance(exitPoint.transform.position, externalTrainTrack.entryPoint.transform.position) < 0.01f)
             {
                 // Is not already connected to something else
@@ -58,7 +73,7 @@ public class TrainTrack : MonoBehaviour
             }
 
             // Are traintracks butt to butt?
-            Debug.Log(Vector3.Distance(exitPoint.transform.position, externalTrainTrack.exitPoint.transform.position));
+            //Debug.Log(Vector3.Distance(exitPoint.transform.position, externalTrainTrack.exitPoint.transform.position));
             if (Vector3.Distance(exitPoint.transform.position, externalTrainTrack.exitPoint.transform.position) < 0.01f)
             {
                 if (externalTrainTrack.nextTrainTrack == null)
@@ -72,7 +87,7 @@ public class TrainTrack : MonoBehaviour
             }
 
             // Are traintracks mouth to mouth?
-            Debug.Log(Vector3.Distance(entryPoint.transform.position, externalTrainTrack.entryPoint.transform.position));
+            //Debug.Log(Vector3.Distance(entryPoint.transform.position, externalTrainTrack.entryPoint.transform.position));
             if (Vector3.Distance(entryPoint.transform.position, externalTrainTrack.entryPoint.transform.position) < 0.01f)
             {
                 if (externalTrainTrack.previousTrainTrack == null)
@@ -89,12 +104,13 @@ public class TrainTrack : MonoBehaviour
         }
     }
 
-    public TrainTrack GetNextTrainTrack()
+    public TrainTrack GetNextTrainTrack(Vector3 _)
     {
         return nextTrainTrack;
     }
 
-    public TrainTrack GetPreviousTrainTrack(){
+    public TrainTrack GetPreviousTrainTrack(Vector3 _)
+    {
         return previousTrainTrack;
     }
 

@@ -33,9 +33,9 @@ public class TrainLocomotive : MonoBehaviour
             }
             else
             {
-                TrainTrack nextPossibleTrack = currentTrainTrack.GetNextTrainTrack();
+                TrainTrack nextPossibleTrack = currentTrainTrack.GetNextTrainTrack(targetPosition);
                 if (isDrivingInReverse){
-                    nextPossibleTrack = currentTrainTrack.GetPreviousTrainTrack();
+                    nextPossibleTrack = currentTrainTrack.GetPreviousTrainTrack(targetPosition);
                 }
                 // Is next defined?
                 if (nextPossibleTrack != null)

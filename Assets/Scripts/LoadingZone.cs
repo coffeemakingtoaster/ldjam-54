@@ -34,6 +34,7 @@ public class LoadingZone : MonoBehaviour
             }
             machine.AddItemInToInventory(retrievedPayload);
         } else {
+            Debug.LogWarning("Getting from out");
             if (!machine.HasOutInventoryContents()){
                 return;
             }

@@ -1,27 +1,44 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
 
 public class TrainTrack : MonoBehaviour
 {
-    public TrainTrack nextTrainTrack;
-    public TrainTrack previousTrainTrack;
+    public List<Vector3> WayPoints;
 
-    public GameObject entryPoint;
-
-    public GameObject exitPoint;
-
-    public GameObject rotatePoint;
-
-    public bool isCurve;
+    public GameObject BaseWayPoint;
     public float GRID_SIZE = 0.1f;
+    public List<TrainTrack> ConnectedTracks;
 
-    public bool flipsDirection = false;
+    public int MaxConnectedTracks;
 
-    public bool isInSwitch = true;
-
-    public void TryToConnectToTrainTracks()
+    void Start()
     {
+        // Search game objects
+        foreach (Transform child in transform)
+        {
+            if (child.name == "WayPoint" && child.gameObject != BaseWayPoint)
+            {
+                Debug.Log("Waypoint found");
+                WayPoints.Add(child.transform.position);
+            }
+        }
+        WayPoints.Insert(0, BaseWayPoint.transform.position);
+        Debug.Log(WayPoints);
+        // Order by furthest away from basepoint
+        // Allows locomotive to simply traverse the list in (reversed) order
+        if (WayPoints.Count > 2)
+        {
+            WayPoints.OrderBy((vec) => Vector3.Distance(vec, BaseWayPoint.transform.position));
+        }
+    }
+
+    public void TryToFindAdjacent()
+    {
+        // No tracks to find here
+        if (ConnectedTracks.Count >= MaxConnectedTracks){
+            return;
+        }
         TrainTrack[] trainTracks = FindObjectsOfType<TrainTrack>();
         foreach (TrainTrack externalTrainTrack in trainTracks)
         {
@@ -31,91 +48,60 @@ public class TrainTrack : MonoBehaviour
                 continue;
             }
 
-            if (externalTrainTrack.gameObject.layer == LayerMask.NameToLayer("Ignore Raycast")){
+            if (externalTrainTrack.gameObject.layer == LayerMask.NameToLayer("Ignore Raycast"))
+            {
                 Debug.Log("Visualization");
                 continue;
             }
 
             // If is further than 0.1 away => no adjacent grid tile
-            //if (Vector3.Distance(transform.position, externalTrainTrack.transform.position) > 0.11f)
-            //{
-            //    Debug.Log("Not adjacent");
-            //    continue;
-            //}
-
-            //Debug.Log("Own: Entrypoint: \t" + entryPoint.transform.position.ToString() + "\t ExitPoint: " + exitPoint.transform.position.ToString());
-            //Debug.Log("Other: Entrypoint: \t" + transform.TransformPoint(externalTrainTrack.entryPoint.transform.position).ToString() + "\t ExitPoint: " + transform.TransformPoint(externalTrainTrack.exitPoint.transform.position).ToString());
-            //Debug.Log(Vector3.Distance(entryPoint.transform.position, externalTrainTrack.exitPoint.transform.position));
-            if (Vector3.Distance(entryPoint.transform.position, externalTrainTrack.exitPoint.transform.position) < 0.01f)
+            Debug.LogWarning(Vector3.Distance(transform.position, externalTrainTrack.transform.position));
+            // 0.23 as Sqrt(0.1 ** 2 + 0.2 ** 2) = 0,22 
+            // This occurs when the item is flipped 180 degrees in comparison to this one 
+            if (Vector3.Distance(transform.position, externalTrainTrack.transform.position) > 0.23f)
             {
-                // Is not already connected to something else
-                if (externalTrainTrack.nextTrainTrack == null)
-                {
-                    Debug.Log("Connecting forward");
-                    previousTrainTrack = externalTrainTrack;
-                    externalTrainTrack.nextTrainTrack = this;
-                }
+                Debug.Log("Not adjacent");
                 continue;
             }
 
-            // Is traintrack before the current?                
-            //Debug.Log(Vector3.Distance(exitPoint.transform.position, externalTrainTrack.entryPoint.transform.position));
-            if (Vector3.Distance(exitPoint.transform.position, externalTrainTrack.entryPoint.transform.position) < 0.01f)
-            {
-                // Is not already connected to something else
-                if (externalTrainTrack.previousTrainTrack == null)
-                {
-                    Debug.Log("Connecting backwards");
-                    nextTrainTrack = externalTrainTrack;
-                    externalTrainTrack.previousTrainTrack = this;
-                }
-                continue;
-            }
+            Debug.Log(externalTrainTrack.WayPoints.Count);
+            Debug.Log(WayPoints.Count);
 
-            // Are traintracks butt to butt?
-            //Debug.Log(Vector3.Distance(exitPoint.transform.position, externalTrainTrack.exitPoint.transform.position));
-            if (Vector3.Distance(exitPoint.transform.position, externalTrainTrack.exitPoint.transform.position) < 0.01f)
-            {
-                if (externalTrainTrack.nextTrainTrack == null)
-                {
-                    Debug.Log("Flipping");
-                    nextTrainTrack = externalTrainTrack;
-                    externalTrainTrack.nextTrainTrack = this;
-                    flipsDirection = true;
-                    externalTrainTrack.flipsDirection = true;
-                }
-            }
+            // Get lowest distance to of any entry or exit of current to any entry of exit of other
+            float distance = (new float[] {
+                Vector3.Distance(WayPoints[0], externalTrainTrack.WayPoints[0]),
+                Vector3.Distance(WayPoints[0], externalTrainTrack.WayPoints.Last()),
+                Vector3.Distance(WayPoints.Last(), externalTrainTrack.WayPoints[0]),
+                Vector3.Distance(WayPoints.Last(), externalTrainTrack.WayPoints.Last())
+            }).Min();
 
-            // Are traintracks mouth to mouth?
-            //Debug.Log(Vector3.Distance(entryPoint.transform.position, externalTrainTrack.entryPoint.transform.position));
-            if (Vector3.Distance(entryPoint.transform.position, externalTrainTrack.entryPoint.transform.position) < 0.01f)
+            if (distance < 0.01f)
             {
-                if (externalTrainTrack.previousTrainTrack == null)
-                {
-                    Debug.Log("Flipping");
-                    previousTrainTrack = externalTrainTrack;
-                    externalTrainTrack.previousTrainTrack = this;
-                    flipsDirection = true;
-                    externalTrainTrack.flipsDirection = true;
-                }
+                AddTrackToConnected(externalTrainTrack);
+                externalTrainTrack.AddTrackToConnected(this);
             }
+        }
+        Debug.Log("Now connected to " + ConnectedTracks.Count);
+    }
 
-            Debug.Log("No Match");
+    public void ValidateConnectedTracks(){
+        // TODO: implement me
+        return;
+    }
+
+    public void PreDeleteHook(){
+        // Remove self from other items
+        foreach(TrainTrack connectedTrainTrack in ConnectedTracks){
+            connectedTrainTrack.ConnectedTracks.Remove(this);
         }
     }
 
-    public TrainTrack GetNextTrainTrack(Vector3 _)
-    {
-        return nextTrainTrack;
-    }
 
-    public TrainTrack GetPreviousTrainTrack(Vector3 _)
-    {
-        return previousTrainTrack;
-    }
-
-    public void SetPreviousTrainTrack(TrainTrack track)
-    {
-        previousTrainTrack = track;
+    public void AddTrackToConnected( TrainTrack otherTrack){
+        // No duplicates
+        if(ConnectedTracks.Contains(otherTrack)){
+            return;
+        }
+        ConnectedTracks.Add(otherTrack);
     }
 }

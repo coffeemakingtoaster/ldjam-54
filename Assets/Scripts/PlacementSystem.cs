@@ -40,17 +40,25 @@ public class PlacementSystem : MonoBehaviour
 
     private void Start()
     {
+        StopDelete();
         StopPlacement();
         floorData = new();
         furnitureData = new();
-        
-
     }
 
+
+    public void StartDelete()
+    {
+        StopDelete();
+        StopPlacement();
+        gridVisualization.SetActive(true);
+        inputManager.OnClicked += DeleteStructure;
+        inputManager.OnExit += StopDelete;
+    }
     public void StartPlacement(int ID)
     {
         StopPlacement();
-        
+        StopDelete();
 
         selectedObjectIndex = database.objectsData.FindIndex(data => data.ID == ID);
         if (selectedObjectIndex < 0)
@@ -63,6 +71,18 @@ public class PlacementSystem : MonoBehaviour
         preview.resetRotation(rotation);
         inputManager.OnClicked += PlaceStructure;
         inputManager.OnExit += StopPlacement;
+        
+    }
+
+    private void DeleteStructure()
+    {
+        if (inputManager.IsPointerOverUI())
+        {
+            return;
+        }
+        GameObject structure = inputManager.GetStructure();
+        furnitureData.RemoveObjectAtGridPosition(structure.GetComponent<Stats>().gridPos, structure.GetComponent<Stats>().size);
+        Destroy(structure);
     }
 
     private void PlaceStructure()
@@ -108,21 +128,12 @@ public class PlacementSystem : MonoBehaviour
         placedGameObject.Add(newObject);
         GridData selectedData = furnitureData;
         //GridData selectedData = database.objectsData[selectedObjectIndex].ID == 0 ? floorData : furnitureData;
+        newObject.GetComponent<Stats>().gridPos = gridPosition;
+        newObject.GetComponent<Stats>().size = newSize;
         selectedData.AddObject(gridPosition, newSize, database.objectsData[selectedObjectIndex].ID, placedGameObject.Count - 1, database.objectsData[selectedObjectIndex].Prefab);
-        if (newObject.GetComponent<TrainTrack>() != null)
-        {
-            this.UpdateTraintracks(gridPosition, newObject);
-        }
         //rotation = 0;
         //preview.resetRotation();
         preview.UpdatePosition(grid.CellToWorld(gridPosition), false,rotation, database.objectsData[selectedObjectIndex].Size);
-        
-    }
-
-    private void UpdateTraintracks(Vector3Int gridPosition, GameObject trackObject)
-    {
-        TrainTrack[] GlobalTrainTracks = FindObjectsOfType<TrainTrack>();
-        trackObject.GetComponent<TrainTrack>().TryToConnectToTrainTracks();
     }
 
     private bool CheckPlacementValidity(Vector3Int gridPosition, int selectedObjectIndex)
@@ -133,14 +144,24 @@ public class PlacementSystem : MonoBehaviour
 
     private void StopPlacement()
     {
-        
         selectedObjectIndex = -1;
         gridVisualization.SetActive(false);
         
         preview.StopShowingPreview();
         inputManager.OnClicked -= PlaceStructure;
         inputManager.OnExit -= StopPlacement;
-        lastDetectedPosition = Vector3Int.zero;
+        
+    }
+
+    private void StopDelete()
+    {
+        
+        gridVisualization.SetActive(false);
+
+        preview.StopShowingPreview();
+        inputManager.OnClicked -= DeleteStructure;
+        inputManager.OnExit -= StopDelete;
+
     }
 
     private void Update()

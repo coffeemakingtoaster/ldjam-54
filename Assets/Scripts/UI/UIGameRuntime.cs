@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
-using static PlacementSystem;
 
-public class UIRuntime : MonoBehaviour
+public class UIGameRuntime : MonoBehaviour
 {   
     [SerializeField] private PlacementSystem ps;
     private VisualElement root;
@@ -20,14 +19,14 @@ public class UIRuntime : MonoBehaviour
 
         //root.Q<Button>("ButtonStart");
 
-        Button buttonPlay = root.Q<Button>("ButtonStart");
+        Button buttonSchneidebrett = root.Q<Button>("Schneidebrett");
         Button buttonExit = root.Q<Button>("ButtonExit");
         buttonSettings = root.Q<Button>("ButtonSettings");
         buttonWrapper = root.Q<VisualElement>("MenuBar");
         //gameUI = root.Q<VisualElement>("MenuBar");
         Button buttonHowTo = root.Q<Button>("ButtonHowTo");
 
-        buttonPlay.clicked += PlayGame;
+        buttonSchneidebrett.clicked += () => ps.StartPlacement(2);
         buttonExit.clicked += ExitApplicationClicked;
         buttonSettings.clicked += () => ps.StartPlacement(0);
 

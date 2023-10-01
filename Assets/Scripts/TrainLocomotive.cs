@@ -34,15 +34,23 @@ public class TrainLocomotive : MonoBehaviour
             else
             {
                 TrainTrack nextPossibleTrack = currentTrainTrack.GetNextTrainTrack(targetPosition);
-                if (isDrivingInReverse){
+                if (isDrivingInReverse)
+                {
                     nextPossibleTrack = currentTrainTrack.GetPreviousTrainTrack(targetPosition);
                 }
                 // Is next defined?
                 if (nextPossibleTrack != null)
                 {
-                    if (nextPossibleTrack.flipsDirection && currentTrainTrack.flipsDirection)
+                    if (nextPossibleTrack.isCurve)
                     {
-                        isDrivingInReverse = !isDrivingInReverse;
+                        if (nextPossibleTrack.flipsDirection && currentTrainTrack.flipsDirection)
+                        {
+                            isDrivingInReverse = !isDrivingInReverse;
+                        }
+                    } else{
+                        if (currentTrainTrack.flipsDirection){
+                            isDrivingInReverse = !isDrivingInReverse;
+                        }
                     }
                     currentTrainTrack = nextPossibleTrack;
                     isInTrackTile = false;

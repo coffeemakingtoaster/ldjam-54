@@ -43,13 +43,13 @@ public class Machine : MonoBehaviour
         {
             return;
         }
-        if (OutInventory.ContainsKey(item))
+        if (InInventory.ContainsKey(item))
         {
-            OutInventory[item] += 1;
+            InInventory[item] += 1;
         }
         else
         {
-            OutInventory.Add(item,1);
+            InInventory.Add(item,1);
         }
         this.CurrentInInvSize += 1;
     }
@@ -58,8 +58,9 @@ public class Machine : MonoBehaviour
     {
         foreach (var key in OutInventory.Keys)
         {
-            if (OutInventory[key] < 0){
+            if (OutInventory[key] > 0){
                 OutInventory[key] -= 1;
+                CurrentOutInvSize -= 1;
                 return key;
             }
         }
@@ -73,6 +74,7 @@ public class Machine : MonoBehaviour
 
     public bool HasOutInventoryContents()
     {
+        Debug.Log("Checking out inventory");
         return this.CurrentOutInvSize > 0;
     }
 }

@@ -114,6 +114,8 @@ public class PlacementSystem : MonoBehaviour
         Vector3 mousePosition = inputManager.GetSelectedMapPosition();
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
 
+        Debug.Log(mousePosition);
+        Debug.Log(gridPosition);
         if(lastDetectedPosition != gridPosition)
         {
             bool placementValidity = CheckPlacementValidity(gridPosition, selectedObjectIndex);

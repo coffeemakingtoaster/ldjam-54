@@ -45,10 +45,6 @@ public class Process : ScriptableObject
     }
     public void process(ref Dictionary<GameObject, int> InInventory, ref Dictionary<GameObject, int> OutInventory, ref int OutInventorySize, GameObject machine, ref int currentInInvSize, ref int currentOutInvSize, ref bool isProcessing)
     {
-        Debug.Log(1);
-        Debug.Log(currentOutInvSize <= (OutInventorySize - outputCount));
-        Debug.Log(!this.isProcessing);
-        Debug.Log(this.gotInputs(InInventory));
 
         //change to correct
         if (currentOutInvSize <= (OutInventorySize - outputCount) && !this.isProcessing && this.gotInputs(InInventory))

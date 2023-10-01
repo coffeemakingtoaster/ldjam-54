@@ -60,9 +60,10 @@ public class InputManager : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 100, structureMask))
         {
-
+            
             hitStructure = hit.transform.gameObject;
         }
+        
         return hitStructure;
 
     }

@@ -2284,7 +2284,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 780878a1272184c47b5c58886f71ab60,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1074480140643187677}
+      addedObject: {fileID: 4517010441020150539}
   m_SourcePrefab: {fileID: 100100000, guid: 780878a1272184c47b5c58886f71ab60, type: 3}
 --- !u!4 &6006905398230023274 stripped
 Transform:
@@ -2312,7 +2312,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InInventorySize: 5
   OutInventorySize: 10
-  processes: []
+  processes:
+  - {fileID: 11400000, guid: b3633bdd0dce2c0499c2552e4fc30e4a, type: 2}
+  - {fileID: 11400000, guid: 0daa99c781f88fa40a3718c3a7952dda, type: 2}
   activeProcess: {fileID: 11400000, guid: b3633bdd0dce2c0499c2552e4fc30e4a, type: 2}
   InInventoryPoint: {fileID: 5376186553415731161}
   OutInventoryPoint: {fileID: 1855072773231365858}
@@ -2354,8 +2356,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridPos: {x: 0, y: 0, z: 0}
   size: {x: 0, y: 0}
---- !u!65 &1074480140643187677
-BoxCollider:
+--- !u!135 &4517010441020150539
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2373,5 +2375,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.2, y: 0.1, z: 0.3}
-  m_Center: {x: 0.1, y: 0.05, z: 0.15}
+  m_Radius: 0.14
+  m_Center: {x: 0.1, y: 0, z: 0.15}

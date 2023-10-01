@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GridData
 {
-    Dictionary<Vector3Int, PlacementData> placedObjects = new();
+    public Dictionary<Vector3Int, PlacementData> placedObjects = new();
 
     public void AddObject(Vector3Int gridPosition, Vector2Int objectSize, int ID, int placedObjectIndex, GameObject placedObject)
     {
@@ -46,6 +46,7 @@ public class GridData
             }
             if (placedObjects.ContainsKey(pos))
             {
+                Debug.Log("not here");
                 return false;
             }
         }
@@ -54,10 +55,20 @@ public class GridData
 
     public void RemoveObjectAtGridPosition(Vector3Int gridPosition,Vector2Int size)
     {
+        Debug.Log(gridPosition);
+        Debug.Log(size);
         List<Vector3Int> positionToOccupy = CalculatePositions(gridPosition, size);
+        Debug.Log(placedObjects.Count);
         foreach (var position in positionToOccupy)
         {
-            placedObjects.Remove(position);
+            
+            if (placedObjects.ContainsKey(position))
+            {
+               
+                placedObjects.Remove(position);
+            }
+            
+
         }
 
     }

@@ -1,5 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <ui:VisualElement name="Item" style="flex-basis: 0; flex-direction: column; justify-content: flex-end; align-items: stretch; width: 200px; height: 200px; margin-top: 1px; margin-bottom: 10%; align-self: auto; margin-left: 10%; position: absolute;">
+        <ui:VisualElement style="flex-grow: 1; width: 400px; height: 600px; background-color: rgba(0, 0, 0, 0.53);" />
         <ui:Button display-tooltip-when-elided="true" name="ButtonStart" class="button-orange info-bottom-button" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; flex-shrink: 1; width: 150px; height: 150px; align-items: auto; align-self: flex-start;" />
     </ui:VisualElement>
 </ui:UXML>

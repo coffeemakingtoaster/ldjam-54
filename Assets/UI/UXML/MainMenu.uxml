@@ -1,9 +1,8 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <ui:Template name="OptionsBar" src="project://database/Assets/UI/UXML/OptionsBar.uxml?fileID=9197481963319205126&amp;guid=66bf81cc8b4df37448aab5f34ebc4724&amp;type=3#OptionsBar" />
     <ui:Template name="MenuBar" src="project://database/Assets/UI/UXML/MenuBar.uxml?fileID=9197481963319205126&amp;guid=6a1d0538fe194794e8d7339a5704c6b6&amp;type=3#MenuBar" />
-    <ui:VisualElement name="background-cursor" style="flex-grow: 1; cursor: url(&apos;project://database/Assets/UI/Textures/Cursors/Cursor_A.png?fileID=2800000&amp;guid=0fc53ad8e877049c3aef54a3f8a1e01a&amp;type=3#Cursor_A&apos;); width: 100%; height: 100%; position: absolute;" />
+    <ui:VisualElement name="background-cursor" style="flex-grow: 1; cursor: url(&apos;project://database/Assets/UI/Textures/Cursors/Cursor_A.png?fileID=2800000&amp;guid=0fc53ad8e877049c3aef54a3f8a1e01a&amp;type=3#Cursor_A&apos;); width: 100%; height: 100%; position: absolute; background-image: url(&apos;project://database/Assets/UI/Background/BG.png?fileID=2800000&amp;guid=c901ce73e4bd15b41814d27ff0fc116c&amp;type=3#BG&apos;);" />
+    <ui:VisualElement name="Logo" style="background-image: url(&apos;project://database/Assets/UI/Textures/Logo.png?fileID=2800000&amp;guid=7fd9bcb81b57ff34884d20bd536f5fcf&amp;type=3#Logo&apos;); -unity-background-scale-mode: scale-to-fit; position: absolute; background-color: rgba(0, 0, 0, 0); width: 317px; height: 228px; left: 5px; top: 5px; flex-grow: 1;" />
     <ui:Instance template="OptionsBar" name="OptionsBar" />
-    <ui:Instance template="MenuBar" name="MenuBar" style="align-items: flex-start; position: absolute; bottom: 0;">
-        <AttributeOverrides element-name="ButtonStart" />
-    </ui:Instance>
+    <ui:Instance template="MenuBar" name="MenuBar" style="align-items: flex-start; position: absolute; bottom: 0;" />
 </ui:UXML>

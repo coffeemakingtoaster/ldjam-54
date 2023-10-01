@@ -73,18 +73,14 @@ public class TrainLocomotive : MonoBehaviour
         {
             if (isDrivingInReverse)
             {
-                Debug.Log("Target entrypoint");
                 return currentTrainTrack.entryPoint.transform.position;
             }
-            Debug.Log("Target exitpoint");
             return currentTrainTrack.exitPoint.transform.position;
         }
         if (isDrivingInReverse)
         {
-            Debug.Log("Target exitpoint");
             return currentTrainTrack.exitPoint.transform.position;
         }
-        Debug.Log("Target entrypoint");
         return currentTrainTrack.entryPoint.transform.position;
     }
 }

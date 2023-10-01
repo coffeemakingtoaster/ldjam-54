@@ -7,6 +7,8 @@ public class TrainWagon : MonoBehaviour
 
     public BallCoupling OwnFrontBallCoupling;
 
+    public GameObject payload;
+
     public float SPEED = 0.05f; 
     void Start()
     {
@@ -22,5 +24,21 @@ public class TrainWagon : MonoBehaviour
         transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, Time.deltaTime);
         Vector3 moveVector = PreviousBallCoupling.GetPosition() - OwnFrontBallCoupling.GetPosition();
         transform.position += moveVector;
+    }
+
+    public GameObject TryToRetrievePayload(){
+        if (this.payload != null){
+            GameObject outgoingCargo = this.payload;
+            this.payload = null;
+            return outgoingCargo;
+        }
+        return null;
+    }
+
+    public bool TryToAddPayload(GameObject payload){
+        if (this.payload == null){
+            this.payload = payload;
+        }
+        return false;
     }
 }

@@ -40,7 +40,9 @@ public class LoadingZone : MonoBehaviour
             if (wagon.payload != null){
                 return;
             }
+            Debug.Log("Adding item to wagon");
             GameObject item = machine.GetItemFromOutIventory();
+            Debug.LogWarning("Adding item "+item.name);
             wagon.TryToAddPayload(item);
         }
     }

@@ -63,7 +63,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1855072773231365858}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff1fd349636c7d542b4a124c8923bb1f, type: 3}
+  m_Script: {fileID: 11500000, guid: 32d41a879a308ab468591c69dc7c2e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mode: 1
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5376186553415731161}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff1fd349636c7d542b4a124c8923bb1f, type: 3}
+  m_Script: {fileID: 11500000, guid: 32d41a879a308ab468591c69dc7c2e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mode: 0
@@ -299,7 +299,6 @@ MonoBehaviour:
   InInventoryPoint: {fileID: 5376186553415731161}
   OutInventoryPoint: {fileID: 1855072773231365858}
   isProcessing: 0
-  tomato: {fileID: 1782086476044112499, guid: 54034cacb2df2fd45bec18715ac0fbe9, type: 3}
   CurrentInInvSize: 0
   CurrentOutInvSize: 0
 --- !u!95 &4867671534606111501

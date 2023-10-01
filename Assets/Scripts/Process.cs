@@ -55,6 +55,7 @@ public class Process : ScriptableObject
         //change to correct
         if (currentOutInvSize <= (OutInventorySize - outputCount) && !isProcessing && gotInputs(InInventory))
         {
+            Debug.LogWarning("Processing");
             Debug.Log(gotInputs(InInventory));
             animator = machine.GetComponent<Animator>();
             

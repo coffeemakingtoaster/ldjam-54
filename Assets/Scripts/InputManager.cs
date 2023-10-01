@@ -34,12 +34,15 @@ public class InputManager : MonoBehaviour
     public Vector3 GetSelectedMapPosition()
     {
         Vector3 mousePos = Input.mousePosition;
+        
         mousePos.z = sceneCamera.nearClipPlane;
         Ray ray = sceneCamera.ScreenPointToRay(mousePos);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit,100, placementLayermask))
         {
+            
             lasPosition = hit.point;
+            
         }
         return lasPosition;
     }

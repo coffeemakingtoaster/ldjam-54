@@ -43,8 +43,6 @@ public class PlacementSystem : MonoBehaviour
         StopPlacement();
         floorData = new();
         furnitureData = new();
-        
-
     }
 
     public void StartPlacement(int ID)
@@ -109,20 +107,9 @@ public class PlacementSystem : MonoBehaviour
         GridData selectedData = furnitureData;
         //GridData selectedData = database.objectsData[selectedObjectIndex].ID == 0 ? floorData : furnitureData;
         selectedData.AddObject(gridPosition, newSize, database.objectsData[selectedObjectIndex].ID, placedGameObject.Count - 1, database.objectsData[selectedObjectIndex].Prefab);
-        if (newObject.GetComponent<TrainTrack>() != null)
-        {
-            this.UpdateTraintracks(gridPosition, newObject);
-        }
         //rotation = 0;
         //preview.resetRotation();
         preview.UpdatePosition(grid.CellToWorld(gridPosition), false,rotation, database.objectsData[selectedObjectIndex].Size);
-        
-    }
-
-    private void UpdateTraintracks(Vector3Int gridPosition, GameObject trackObject)
-    {
-        TrainTrack[] GlobalTrainTracks = FindObjectsOfType<TrainTrack>();
-        trackObject.GetComponent<TrainTrack>().TryToConnectToTrainTracks();
     }
 
     private bool CheckPlacementValidity(Vector3Int gridPosition, int selectedObjectIndex)
@@ -133,7 +120,6 @@ public class PlacementSystem : MonoBehaviour
 
     private void StopPlacement()
     {
-        
         selectedObjectIndex = -1;
         gridVisualization.SetActive(false);
         

@@ -52,6 +52,15 @@ public class GridData
         return true;
     }
 
+    public void RemoveObjectAtGridPosition(Vector3Int gridPosition,Vector2Int size)
+    {
+        List<Vector3Int> positionToOccupy = CalculatePositions(gridPosition, size);
+        foreach (var position in positionToOccupy)
+        {
+            placedObjects.Remove(position);
+        }
+
+    }
     public GameObject GetObjectAtGridPosition(Vector3Int gridPosition)
     {
         List<Vector3Int> positionToOccupy = CalculatePositions(gridPosition, new Vector2Int(1,1));

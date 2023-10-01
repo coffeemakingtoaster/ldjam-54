@@ -47,6 +47,13 @@ public class PlacementSystem : MonoBehaviour
 
     }
 
+
+    public void StartDelete()
+    {
+        StopPlacement();
+        gridVisualization.SetActive(true);
+        inputManager.OnClicked += DeleteStructure;
+    }
     public void StartPlacement(int ID)
     {
         StopPlacement();
@@ -63,6 +70,17 @@ public class PlacementSystem : MonoBehaviour
         preview.resetRotation(rotation);
         inputManager.OnClicked += PlaceStructure;
         inputManager.OnExit += StopPlacement;
+    }
+
+    private void DeleteStructure()
+    {
+        if (inputManager.IsPointerOverUI())
+        {
+            return;
+        }
+        GameObject structure = inputManager.GetStructure();
+        floorData.RemoveObjectAtGridPosition(structure.GetComponent<Stats>().gridPos, structure.GetComponent<Stats>().size);
+        Destroy(structure);
     }
 
     private void PlaceStructure()

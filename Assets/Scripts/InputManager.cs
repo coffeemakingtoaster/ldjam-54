@@ -9,10 +9,15 @@ public class InputManager : MonoBehaviour
     [SerializeField]
     private Camera sceneCamera;
 
-    private Vector3 lasPosition;
+    private Vector3 lastPosition;
 
     [SerializeField]
     private LayerMask placementLayermask;
+
+    [SerializeField]
+    private LayerMask structureMask;
+
+    private GameObject hitStructure;
 
     public event Action OnClicked, OnExit;
 
@@ -41,9 +46,25 @@ public class InputManager : MonoBehaviour
         if (Physics.Raycast(ray, out hit,100, placementLayermask))
         {
             
-            lasPosition = hit.point;
+            lastPosition = hit.point;
             
         }
-        return lasPosition;
+        return lastPosition;
+    }
+
+    public GameObject GetStructure()
+    {
+        Vector3 mousePos = Input.mousePosition;
+        mousePos.z = sceneCamera.nearClipPlane;
+        Ray ray = sceneCamera.ScreenPointToRay(mousePos);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 100, structureMask))
+        {
+            
+            hitStructure = hit.transform.gameObject;
+        }
+        
+        return hitStructure;
+
     }
 }

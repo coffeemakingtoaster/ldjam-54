@@ -40,15 +40,25 @@ public class PlacementSystem : MonoBehaviour
 
     private void Start()
     {
+        StopDelete();
         StopPlacement();
         floorData = new();
         furnitureData = new();
     }
 
+
+    public void StartDelete()
+    {
+        StopDelete();
+        StopPlacement();
+        gridVisualization.SetActive(true);
+        inputManager.OnClicked += DeleteStructure;
+        inputManager.OnExit += StopDelete;
+    }
     public void StartPlacement(int ID)
     {
         StopPlacement();
-        
+        StopDelete();
 
         selectedObjectIndex = database.objectsData.FindIndex(data => data.ID == ID);
         if (selectedObjectIndex < 0)
@@ -61,6 +71,18 @@ public class PlacementSystem : MonoBehaviour
         preview.resetRotation(rotation);
         inputManager.OnClicked += PlaceStructure;
         inputManager.OnExit += StopPlacement;
+        
+    }
+
+    private void DeleteStructure()
+    {
+        if (inputManager.IsPointerOverUI())
+        {
+            return;
+        }
+        GameObject structure = inputManager.GetStructure();
+        furnitureData.RemoveObjectAtGridPosition(structure.GetComponent<Stats>().gridPos, structure.GetComponent<Stats>().size);
+        Destroy(structure);
     }
 
     private void PlaceStructure()
@@ -106,6 +128,8 @@ public class PlacementSystem : MonoBehaviour
         placedGameObject.Add(newObject);
         GridData selectedData = furnitureData;
         //GridData selectedData = database.objectsData[selectedObjectIndex].ID == 0 ? floorData : furnitureData;
+        newObject.GetComponent<Stats>().gridPos = gridPosition;
+        newObject.GetComponent<Stats>().size = newSize;
         selectedData.AddObject(gridPosition, newSize, database.objectsData[selectedObjectIndex].ID, placedGameObject.Count - 1, database.objectsData[selectedObjectIndex].Prefab);
         //rotation = 0;
         //preview.resetRotation();
@@ -126,7 +150,18 @@ public class PlacementSystem : MonoBehaviour
         preview.StopShowingPreview();
         inputManager.OnClicked -= PlaceStructure;
         inputManager.OnExit -= StopPlacement;
-        lastDetectedPosition = Vector3Int.zero;
+        
+    }
+
+    private void StopDelete()
+    {
+        
+        gridVisualization.SetActive(false);
+
+        preview.StopShowingPreview();
+        inputManager.OnClicked -= DeleteStructure;
+        inputManager.OnExit -= StopDelete;
+
     }
 
     private void Update()

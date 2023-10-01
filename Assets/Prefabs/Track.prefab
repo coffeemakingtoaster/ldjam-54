@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3092393951854746913}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WayPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8518163570272434519}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WayPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2558291449833538857}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8438421712508617912}
   - component: {fileID: 420929694307049822}
-  m_Layer: 0
+  - component: {fileID: 7374338190292454306}
+  - component: {fileID: -3184467128465879771}
+  m_Layer: 8
   m_Name: Track
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,6 +148,41 @@ MonoBehaviour:
   GRID_SIZE: 0.1
   ConnectedTracks: []
   MaxConnectedTracks: 2
+--- !u!114 &7374338190292454306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4398005425921824447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6de2f99121023e6409ae30fca94d6cb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridPos: {x: 0, y: 0, z: 0}
+  size: {x: 0, y: 0}
+--- !u!135 &-3184467128465879771
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4398005425921824447}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.05
+  m_Center: {x: 0.05, y: 0, z: 0.05}
 --- !u!1001 &5797860005515811483
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -208,6 +245,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TrackStraight
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 718159815ae928d439bef8ac7a618eaf,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

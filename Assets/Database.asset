@@ -28,3 +28,13 @@ MonoBehaviour:
     <Size>k__BackingField: {x: 2, y: 3}
     <Prefab>k__BackingField: {fileID: 6347542262721816272, guid: 7ecb4e6b77b52ba42bbf6c6e88f0e1ed,
       type: 3}
+  - <Name>k__BackingField: RightTurnTrack
+    <ID>k__BackingField: 3
+    <Size>k__BackingField: {x: 1, y: 1}
+    <Prefab>k__BackingField: {fileID: 4398005425921824447, guid: c6f8bf46786d60248be9685a40bdea13,
+      type: 3}
+  - <Name>k__BackingField: LeftTurnTrack
+    <ID>k__BackingField: 4
+    <Size>k__BackingField: {x: 1, y: 1}
+    <Prefab>k__BackingField: {fileID: 4398005425921824447, guid: d7e0173dcafb6c24aa321973f76e4d72,
+      type: 3}

@@ -45,18 +45,20 @@ public class Process : ScriptableObject
     }
     public void process(ref Dictionary<GameObject, int> InInventory, ref Dictionary<GameObject, int> OutInventory, ref int OutInventorySize, GameObject machine, ref int currentInInvSize, ref int currentOutInvSize, ref bool isProcessing)
     {
-
+        Debug.Log(currentOutInvSize);
+        Debug.Log(OutInventorySize);
+        Debug.Log(outputCount);
         //change to correct
         if (currentOutInvSize <= (OutInventorySize - outputCount) && !this.isProcessing && this.gotInputs(InInventory))
         {
-            Debug.LogWarning("Processing");
-            Debug.Log(gotInputs(InInventory));
+            
+            //Debug.Log(gotInputs(InInventory));
             animator = machine.GetComponent<Animator>();
 
             isProcessing = true;
             foreach (KeyValuePair<GameObject, int> input in Input)
             {
-                Debug.Log("Looping Lo");
+                
                 InInventory[input.Key] -= input.Value;
 
             }
@@ -88,7 +90,7 @@ public class Process : ScriptableObject
 
     public void finishProcess(ref Dictionary<GameObject, int> InInventory, ref Dictionary<GameObject, int> OutInventory, ref int currentOutInvSize)
     {
-
+        
         foreach (KeyValuePair<GameObject, int> output in Output)
         {
             if (OutInventory.ContainsKey(output.Key))

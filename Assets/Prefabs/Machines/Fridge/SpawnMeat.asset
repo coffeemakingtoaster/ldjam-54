@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e5d8b215071ec489709fdd0cb4b62f, type: 3}
+  m_Name: SpawnMeat
+  m_EditorClassIdentifier: 
+  timeToProcess: 0
+  inputItems: []
+  outputItems:
+  - {fileID: 344007953849181974, guid: a7726a1ce0fd32d45a1c9ac141bcc865, type: 3}
+  inputItemCount: 
+  outputItemCount: 01000000

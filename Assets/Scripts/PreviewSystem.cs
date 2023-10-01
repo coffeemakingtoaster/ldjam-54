@@ -18,6 +18,8 @@ public class PreviewSystem : MonoBehaviour
 
     private Renderer cellIndicatorRenderer;
 
+    private int currentPrevRot = 0;
+
     private void Start()
     {
         previewMaterialInstance = new Material(previewMaterialsPrefab);
@@ -31,7 +33,9 @@ public class PreviewSystem : MonoBehaviour
         previewObject.layer = LayerMask.NameToLayer("Ignore Raycast");
         PreparePreview(previewObject);
         PrepareCursor(size);
+        rotate(currentPrevRot);
         cellIndicator.SetActive(true);
+        //resetRotation();
     }
 
     private void PrepareCursor(Vector2Int size)
@@ -65,16 +69,52 @@ public class PreviewSystem : MonoBehaviour
         Destroy(previewObject);
     }
 
-    public void UpdatePosition(Vector3 position, bool validity)
+    public void UpdatePosition(Vector3 position, bool validity, int rotation,Vector2Int size)
     {
-        MovePreview(position);
+        MovePreview(position,rotation,size);
         MoveCursor(position);
         ApplyFeedback(validity);
     }
 
-    private void MovePreview(Vector3 position)
+    public void resetRotation(int rotation)
     {
-        previewObject.transform.position = new Vector3(position.x, position.y, position.z);
+        Debug.Log(rotation);
+        //previewObject.transform.RotateAround(previewObject.transform.Find("Center").transform.position, Vector3.up, -currentPrevRot);
+        currentPrevRot = rotation;
+    }
+    public void rotate(int rotation)
+    {
+        currentPrevRot += 90;
+        if (currentPrevRot == 360)
+        {
+            currentPrevRot = 0;
+        }
+        
+        previewObject.transform.RotateAround(previewObject.transform.Find("Center").transform.position, Vector3.up, rotation);
+    }
+
+    private void MovePreview(Vector3 position,int rotation,Vector2Int size)
+    {
+        float addx = 0;
+        float addz = 0;
+        
+        if(rotation == 90)
+        {
+            addz = 0.1f *size.x;
+        }
+        if (rotation == 180)
+        {
+            addx = 0.1f * size.x;
+            addz = 0.1f * size.y;
+        }
+        if (rotation == 270)
+        {
+            addx = 0.1f * size.y;
+            
+        }
+        
+        previewObject.transform.position = new Vector3(position.x+addx, position.y, position.z+addz);
+        
     }
 
     private void MoveCursor(Vector3 position)

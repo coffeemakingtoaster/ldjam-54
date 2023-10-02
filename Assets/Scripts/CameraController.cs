@@ -12,12 +12,14 @@ namespace DefaultNamespace
         
         public float MovementSpeed;
         public float ZoomSpeed;
+        public float TurnSpeed;
         public float Radius;
         public int MaxZoom;
         public int MinZoom;
         
         private Transform cameraTransform;
         private Vector3 cameraCenterPosition;
+        private float rotation = 40;
         
         private void Start()
         {
@@ -29,9 +31,20 @@ namespace DefaultNamespace
         {
             Vector3 direction = new Vector3( Input.GetAxis("Horizontal") * MovementSpeed * Time.deltaTime,
                 0, 
-                Input.GetAxis("Vertical") * MovementSpeed * Time.deltaTime );
+            Input.GetAxis("Vertical") * MovementSpeed * Time.deltaTime );
             Vector3 fixedDirection = ApplyPerspective(direction);
             float zoom = Input.mouseScrollDelta.y * ZoomSpeed * Time.deltaTime;
+            if (Input.GetKey(KeyCode.Q))
+            {
+                rotation -= TurnSpeed * Time.deltaTime;
+                transform.rotation = Quaternion.Euler(40f, rotation, 0f);
+            }
+            if (Input.GetKey(KeyCode.E))
+            {
+                rotation += TurnSpeed * Time.deltaTime;
+                transform.rotation = Quaternion.Euler(40f, rotation, 0f);
+            }
+
 
             // Move
             Vector3 newPosition = cameraTransform.position + fixedDirection;
@@ -53,8 +66,8 @@ namespace DefaultNamespace
         private Vector3 ApplyPerspective(Vector3 direction)
         {
             // Camera Rotation
-            Quaternion rotation = Quaternion.Euler(0,40,0);
-            Matrix4x4 isoMatrix = Matrix4x4.Rotate(rotation);
+            Quaternion newrotation = Quaternion.Euler(0f, rotation, 0f);
+            Matrix4x4 isoMatrix = Matrix4x4.Rotate(newrotation);
             Vector3 isoDirection = isoMatrix.MultiplyVector(direction);
             return isoDirection;
         }

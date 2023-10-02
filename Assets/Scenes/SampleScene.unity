@@ -874,37 +874,37 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 79e6df1af33fd5a4fbd71b5c788a963c,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.5
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 79e6df1af33fd5a4fbd71b5c788a963c,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 79e6df1af33fd5a4fbd71b5c788a963c,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 79e6df1af33fd5a4fbd71b5c788a963c,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 79e6df1af33fd5a4fbd71b5c788a963c,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 79e6df1af33fd5a4fbd71b5c788a963c,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 79e6df1af33fd5a4fbd71b5c788a963c,
         type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 79e6df1af33fd5a4fbd71b5c788a963c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 79e6df1af33fd5a4fbd71b5c788a963c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 79e6df1af33fd5a4fbd71b5c788a963c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 79e6df1af33fd5a4fbd71b5c788a963c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 79e6df1af33fd5a4fbd71b5c788a963c,
         type: 3}
@@ -1597,6 +1597,7 @@ MonoBehaviour:
   CameraCenter: {fileID: 821819660}
   MovementSpeed: 3
   ZoomSpeed: 1700
+  TurnSpeed: 70
   Radius: 3.5
   MaxZoom: 25
   MinZoom: 70

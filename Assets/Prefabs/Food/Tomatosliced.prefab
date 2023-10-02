@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2904773834270827318}
   - component: {fileID: 2296853388295466131}
   - component: {fileID: 4036624623051216985}
+  - component: {fileID: 6012706401679649140}
   m_Layer: 0
   m_Name: Tomatosliced
   m_TagString: Untagged
@@ -84,3 +85,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6012706401679649140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2523146935829772684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8f3c9b928ca13345b3470dfc3a2f97e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value: 5

@@ -36,6 +36,11 @@ public class PlacementSystem : MonoBehaviour
 
     private int rotation;
 
+    private Vector2Int newSize;
+    private float addx = 0;
+    private float addz = 0;
+
+
     
 
     private void Start()
@@ -95,7 +100,9 @@ public class PlacementSystem : MonoBehaviour
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
         //print(gridPosition);
 
-        bool placementValidity = CheckPlacementValidity(gridPosition, selectedObjectIndex);
+        calcSize();
+
+        bool placementValidity = CheckPlacementValidity(gridPosition, selectedObjectIndex,newSize);
         if (placementValidity == false)
         {
             return;
@@ -104,25 +111,7 @@ public class PlacementSystem : MonoBehaviour
         GameObject newObject = Instantiate(database.objectsData[selectedObjectIndex].Prefab);
         
         newObject.transform.RotateAround(newObject.transform.Find("Center").transform.position, Vector3.up, rotation);
-        float addx = 0;
-        float addz = 0;
-        Vector2Int newSize = database.objectsData[selectedObjectIndex].Size;
-        if (rotation == 90)
-        {
-            newSize = new Vector2Int(newSize.y, newSize.x);
-            addz = 0.1f * database.objectsData[selectedObjectIndex].Size.x;
-        }
-        if (rotation == 180)
-        {
-            addx = 0.1f * database.objectsData[selectedObjectIndex].Size.x;
-            addz = 0.1f * database.objectsData[selectedObjectIndex].Size.y;
-        }
-        if (rotation == 270)
-        {
-            newSize = new Vector2Int(newSize.y, newSize.x);
-            addx = 0.1f * database.objectsData[selectedObjectIndex].Size.y;
-
-        }
+        
         Vector3 worldPos = grid.CellToWorld(gridPosition);
         newObject.transform.position = new Vector3(worldPos.x+addx,worldPos.y,worldPos.z+addz);
         placedGameObject.Add(newObject);
@@ -136,10 +125,10 @@ public class PlacementSystem : MonoBehaviour
         preview.UpdatePosition(grid.CellToWorld(gridPosition), false,rotation, database.objectsData[selectedObjectIndex].Size);
     }
 
-    private bool CheckPlacementValidity(Vector3Int gridPosition, int selectedObjectIndex)
+    private bool CheckPlacementValidity(Vector3Int gridPosition, int selectedObjectIndex,Vector2Int size)
     {
         GridData selectedData = database.objectsData[selectedObjectIndex].ID == 0 ? floorData : furnitureData;
-        return selectedData.CanPlaceObjectAt(gridPosition, database.objectsData[selectedObjectIndex].Size);
+        return selectedData.CanPlaceObjectAt(gridPosition, size);
     }
 
     private void StopPlacement()
@@ -164,6 +153,28 @@ public class PlacementSystem : MonoBehaviour
 
     }
 
+    private void calcSize()
+    {
+        addx = 0;
+        addz = 0;
+        newSize = database.objectsData[selectedObjectIndex].Size;
+        if (rotation == 90)
+        {
+            newSize = new Vector2Int(newSize.y, newSize.x);
+            addz = 0.1f * database.objectsData[selectedObjectIndex].Size.x;
+        }
+        if (rotation == 180)
+        {
+            addx = 0.1f * database.objectsData[selectedObjectIndex].Size.x;
+            addz = 0.1f * database.objectsData[selectedObjectIndex].Size.y;
+        }
+        if (rotation == 270)
+        {
+            newSize = new Vector2Int(newSize.y, newSize.x);
+            addx = 0.1f * database.objectsData[selectedObjectIndex].Size.y;
+
+        }
+    }
     private void Update()
     {
         
@@ -179,8 +190,9 @@ public class PlacementSystem : MonoBehaviour
         
         if (Input.GetKeyDown(turnRight))
         {
-            Debug.Log(mousePosition);
-            bool placementValidity = CheckPlacementValidity(gridPosition, selectedObjectIndex);
+        
+            calcSize();
+            bool placementValidity = CheckPlacementValidity(gridPosition, selectedObjectIndex,newSize);
             preview.rotate(90);
             
             rotation += 90;
@@ -194,8 +206,8 @@ public class PlacementSystem : MonoBehaviour
         
         if (lastDetectedPosition != gridPosition)
         {
-            
-            bool placementValidity = CheckPlacementValidity(gridPosition, selectedObjectIndex);
+            calcSize();
+            bool placementValidity = CheckPlacementValidity(gridPosition, selectedObjectIndex,newSize);
 
             mouseIndicator.transform.position = mousePosition;
             preview.UpdatePosition(grid.CellToWorld(gridPosition), placementValidity,rotation, database.objectsData[selectedObjectIndex].Size);

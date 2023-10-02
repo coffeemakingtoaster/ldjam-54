@@ -9,6 +9,8 @@ public class TrainWagon : MonoBehaviour
 
     public GameObject payload;
 
+    private Vector3 previousPosition;
+
     public float SPEED = 0.05f; 
     void Start()
     {
@@ -19,11 +21,15 @@ public class TrainWagon : MonoBehaviour
     void Update()
     {
         Vector3 targetPosition = PreviousBallCoupling.GetPosition();
+        if (targetPosition == previousPosition){
+            return;
+        }
         Vector3 lookVector = (targetPosition - OwnFrontBallCoupling.GetPosition()).normalized;
         Quaternion toRotation = Quaternion.LookRotation(lookVector);
         transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, Time.deltaTime);
         Vector3 moveVector = PreviousBallCoupling.GetPosition() - OwnFrontBallCoupling.GetPosition();
         transform.position += moveVector;
+        previousPosition = targetPosition;
     }
 
     public GameObject TryToRetrievePayload(){

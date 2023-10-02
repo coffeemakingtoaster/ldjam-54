@@ -47,6 +47,9 @@ public class TrainSpawner : MonoBehaviour
                     Debug.Log(endCoupling.GetPosition());
                     previous = Instantiate(WagonPrefab, locomotive.transform.position + offset *  i , Quaternion.identity);
                     previous.GetComponent<TrainWagon>().PreviousBallCoupling = endCoupling;
+                    if (InitialCargo){
+                        previous.GetComponent<TrainWagon>().payload = InitialCargo;
+                    }
                 }
             } else{
                 Debug.Log("Not spawning train as previous train has not left yet");

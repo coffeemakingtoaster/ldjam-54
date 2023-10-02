@@ -190,7 +190,7 @@ public class PlacementSystem : MonoBehaviour
         
         if (Input.GetKeyDown(turnRight))
         {
-            Debug.Log(mousePosition);
+        
             calcSize();
             bool placementValidity = CheckPlacementValidity(gridPosition, selectedObjectIndex,newSize);
             preview.rotate(90);

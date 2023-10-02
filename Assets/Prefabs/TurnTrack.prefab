@@ -62,50 +62,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8438421712508617912}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1688037181699836450}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0006, y: 0.0025149998, z: 0.0004}
-  m_LocalScale: {x: 0.5, y: 1, z: 0.5}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8438421712508617912}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8518163570272434519}
-  m_Layer: 8
-  m_Name: WayPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8518163570272434519
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3107910977542908887}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.035, y: 0, z: 0.035}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8438421712508617912}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4039522249659692099
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,7 +126,6 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3092393951854746913}
-  - {fileID: 8518163570272434519}
   - {fileID: 4440640289091109709}
   - {fileID: 4500636345151013337}
   - {fileID: 7149191894691627178}
@@ -192,9 +147,9 @@ MonoBehaviour:
   BaseWayPoint: {fileID: 1408344474195321062}
   GRID_SIZE: 0.1
   ConnectedTracks: []
+  ConnectedSwitches: []
   MaxConnectedTracks: 2
-  flipsDirection: 0
-  isInSwitch: 1
+  isInSwitch: 0
 --- !u!114 &7628382624535676212
 MonoBehaviour:
   m_ObjectHideFlags: 0

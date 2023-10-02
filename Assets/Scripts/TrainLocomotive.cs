@@ -86,16 +86,23 @@ public class TrainLocomotive : MonoBehaviour
 
     void SetNextTrainTrack()
     {
-        Debug.Log("Finding next track");
         float shortestDistance = 0.05f;
         TrainTrack closestTrainTrack = null;
         List<Vector3> futureWaypoints = new List<Vector3>();
 
         currentTrainTrack.TryToFindAdjacent();
 
-        foreach (TrainTrack possibleTrainTrack in currentTrainTrack.ConnectedTracks)
+        List<TrainTrack> validTracks = new List<TrainTrack>(currentTrainTrack.ConnectedTracks);
+
+        foreach(TrackSwitch trackSwitch in currentTrainTrack.ConnectedSwitches){
+            trackSwitch.TryToFindAdjacent();
+            validTracks.Add(trackSwitch.getClosestActiveTrainTrack(transform.position));
+            Debug.Log(trackSwitch.getClosestActiveTrainTrack(transform.position));
+        }
+
+
+        foreach (TrainTrack possibleTrainTrack in validTracks)
         {
-            Debug.Log("Current shortest distance " + shortestDistance);
             Debug.Log(possibleTrainTrack.transform.gameObject.name);
             // This would just create a loop
             if (possibleTrainTrack.Equals(currentTrainTrack) || possibleTrainTrack.Equals(previousTrainTrack))
@@ -121,6 +128,7 @@ public class TrainLocomotive : MonoBehaviour
             // Shortest distance to first waypoint of track            
             if (startDistance < shortestDistance)
             {
+                Debug.Log("Start");
                 shortestDistance = startDistance;
                 closestTrainTrack = possibleTrainTrack;
                 futureWaypoints = new List<Vector3>(possibleTrainTrack.WayPoints);
@@ -130,7 +138,8 @@ public class TrainLocomotive : MonoBehaviour
             // Dont do this on one way tracks
             if (endDistance < shortestDistance)
             {
-                shortestDistance = startDistance;
+                Debug.Log("End");
+                shortestDistance = endDistance;
                 closestTrainTrack = possibleTrainTrack;
                 futureWaypoints = new List<Vector3>(possibleTrainTrack.WayPoints);
                 futureWaypoints.Reverse();

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlacementSystem : MonoBehaviour
@@ -40,6 +41,7 @@ public class PlacementSystem : MonoBehaviour
     private float addx = 0;
     private float addz = 0;
 
+    private GameStats gameStats;
 
     
 
@@ -49,6 +51,7 @@ public class PlacementSystem : MonoBehaviour
         StopPlacement();
         floorData = new();
         furnitureData = new();
+        gameStats = FindObjectOfType<GameStats>();
     }
 
 
@@ -77,6 +80,10 @@ public class PlacementSystem : MonoBehaviour
         inputManager.OnClicked += PlaceStructure;
         inputManager.OnExit += StopPlacement;
         
+    }
+
+    private bool CanAfford(int objIndex){
+        return database.objectsData[objIndex].Price <= gameStats.getCurrentFunds();
     }
 
     private void DeleteStructure()
@@ -108,6 +115,12 @@ public class PlacementSystem : MonoBehaviour
             return;
         }
 
+        bool canAfford =  CanAfford(selectedObjectIndex);
+        if (!canAfford){
+            return;
+        }
+
+
         GameObject newObject = Instantiate(database.objectsData[selectedObjectIndex].Prefab);
         
         newObject.transform.RotateAround(newObject.transform.Find("Center").transform.position, Vector3.up, rotation);
@@ -123,6 +136,8 @@ public class PlacementSystem : MonoBehaviour
         //rotation = 0;
         //preview.resetRotation();
         preview.UpdatePosition(grid.CellToWorld(gridPosition), false,rotation, database.objectsData[selectedObjectIndex].Size);
+        // Reduce player funds
+        gameStats.spendFunds(database.objectsData[selectedObjectIndex].Price);
     }
 
     private bool CheckPlacementValidity(Vector3Int gridPosition, int selectedObjectIndex,Vector2Int size)
@@ -193,7 +208,7 @@ public class PlacementSystem : MonoBehaviour
         {
         
             calcSize();
-            bool placementValidity = CheckPlacementValidity(gridPosition, selectedObjectIndex,newSize);
+            bool placementValidity = CheckPlacementValidity(gridPosition, selectedObjectIndex,newSize) && CanAfford(selectedObjectIndex);
             preview.rotate(90);
             
             rotation += 90;
@@ -208,7 +223,7 @@ public class PlacementSystem : MonoBehaviour
         if (lastDetectedPosition != gridPosition)
         {
             calcSize();
-            bool placementValidity = CheckPlacementValidity(gridPosition, selectedObjectIndex,newSize);
+            bool placementValidity = CheckPlacementValidity(gridPosition, selectedObjectIndex,newSize) && CanAfford(selectedObjectIndex);;
 
             mouseIndicator.transform.position = mousePosition;
             preview.UpdatePosition(grid.CellToWorld(gridPosition), placementValidity,rotation, database.objectsData[selectedObjectIndex].Size);

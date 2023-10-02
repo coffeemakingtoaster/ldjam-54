@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bc7085bb18ae68409570a8150e00feb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnRate: 10
+  SpawnRate: 15
   InitialCargo: {fileID: 0}
   WagonAmount: 4
   hasLocomotiveInsideIt: 0

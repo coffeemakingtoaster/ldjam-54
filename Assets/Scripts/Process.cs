@@ -66,7 +66,7 @@ public class Process : ScriptableObject
         }
     }
 
-    private bool gotInputs(Dictionary<GameObject, int> InInventory)
+    public bool gotInputs(Dictionary<GameObject, int> InInventory)
     {
         foreach (var key in Input.Keys)
         {

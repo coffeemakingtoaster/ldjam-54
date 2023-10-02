@@ -174,8 +174,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InInventorySize: 0
   OutInventorySize: 10
-  processes: []
-  activeProcess: {fileID: 11400000, guid: b285518d6a3dd6e458e66a0c7f62ff34, type: 2}
+  processes:
+  - {fileID: 11400000, guid: ec51760f3f6717f4ba01fabdd892d28b, type: 2}
   InInventoryPoint: {fileID: 3768761209805250803}
   OutInventoryPoint: {fileID: 3637090659833489785}
   FoodPoint: {fileID: 771911778955457947}
@@ -183,6 +183,7 @@ MonoBehaviour:
   isDisplaying: 0
   CurrentInInvSize: 0
   CurrentOutInvSize: 0
+  clip: {fileID: 0}
 --- !u!95 &-6671644544488762885
 Animator:
   serializedVersion: 5
@@ -193,7 +194,7 @@ Animator:
   m_GameObject: {fileID: 1351631652799188326}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5fa2d95cc972e55438a18f0fc3306435, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1cb1066fa6862014eadcad5a262c7724, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 136b47f4797c1b64987741f0b2426415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InInventorySize: 20
+  InInventorySize: 500
   OutInventorySize: 20
   processes: []
   activeProcess: {fileID: 11400000, guid: f6f1e712765eb1041aee8bdd44958dc1, type: 2}

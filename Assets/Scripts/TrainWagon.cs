@@ -52,7 +52,7 @@ public class TrainWagon : MonoBehaviour
         }
         Vector3 lookVector = (targetPosition - OwnFrontBallCoupling.GetPosition()).normalized;
         Quaternion toRotation = Quaternion.LookRotation(lookVector);
-        transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, Time.deltaTime);
+        transform.rotation = Quaternion.Lerp(transform.rotation, toRotation,  2 * Time.deltaTime);
         Vector3 moveVector = PreviousBallCoupling.GetPosition() - OwnFrontBallCoupling.GetPosition();
         transform.position += moveVector;
         previousPosition = targetPosition;
@@ -64,7 +64,7 @@ public class TrainWagon : MonoBehaviour
         {
             GameObject outgoingCargo = this.payload;
             this.payload = null;
-            Destroy(payload);
+            Destroy(payloadDisplay);
             return outgoingCargo;
         }
         return null;

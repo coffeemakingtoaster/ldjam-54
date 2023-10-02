@@ -135,8 +135,9 @@ public class UIGameRuntime : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             ClosePanel();
-            DisplayCurrentFunds();
         }
+
+        DisplayCurrentFunds();
     }
 
 }

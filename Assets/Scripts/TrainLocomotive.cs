@@ -11,6 +11,8 @@ public class TrainLocomotive : MonoBehaviour
     public float SPEED = 5f;
     public bool isDrivingInReverse = false;
 
+    public bool hasSpawnProtection = true;
+
     List<Vector3> unvisitedWaypoints = new List<Vector3>();
     List<Vector3> visitedWaypoints = new List<Vector3>();
 
@@ -162,6 +164,9 @@ public class TrainLocomotive : MonoBehaviour
 
      void OnTriggerEnter(Collider collision)
     {
+        if (hasSpawnProtection){
+            return;
+        }
         if (collision.gameObject.Equals(this)){
             return;
         }

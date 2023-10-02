@@ -41,12 +41,12 @@ public class TrainSpawner : MonoBehaviour
                 GameObject locomotive = Instantiate(LocomotivePrefab, SpawnPoint.transform.position, Quaternion.Euler(0, 180, 0));
                 locomotive.GetComponent<TrainLocomotive>().currentTrainTrack = firstTrainTrack;
                 Vector3 offset = SecondarySpawnPoint.transform.position - SpawnPoint.transform.position;
-                Debug.Log(offset);
+                //Debug.Log(offset);
                 GameObject previous = locomotive;
                 for (int i = 0; i < WagonAmount; i++)
                 {
                     BallCoupling endCoupling = previous.transform.Find("EndCoupling").gameObject.GetComponent<BallCoupling>();
-                    Debug.Log(endCoupling.GetPosition());
+                    //Debug.Log(endCoupling.GetPosition());
                     previous = Instantiate(WagonPrefab, locomotive.transform.position + offset * i, Quaternion.identity);
                     previous.GetComponent<TrainWagon>().PreviousBallCoupling = endCoupling;
                     if (InitialCargo)
@@ -57,7 +57,7 @@ public class TrainSpawner : MonoBehaviour
             }
             else
             {
-                Debug.Log("Not spawning train as previous train has not left yet");
+                //Debug.Log("Not spawning train as previous train has not left yet");
             }
             yield return new WaitForSeconds(SpawnRate);
         }

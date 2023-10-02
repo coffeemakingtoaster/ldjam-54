@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class UIGameRuntime : MonoBehaviour
 {   
     [SerializeField] private PlacementSystem ps;
+    [SerializeField] private GameStats gs;
     private VisualElement root;
     private VisualElement gameUI;
     private VisualElement menuUI;
@@ -58,6 +59,8 @@ public class UIGameRuntime : MonoBehaviour
         buttonHowToClose = root.Q<Button>("CloseTutorial");
         buttonSettingsClose = root.Q<Button>("CloseSettings");
 
+        cash = root.Q<Label>("Cash");
+
         // -- ASSIGNMENT --
         // Devices
         buttonCuttingBoard.clicked += () => StartPlacement(3);
@@ -77,7 +80,6 @@ public class UIGameRuntime : MonoBehaviour
         buttonHowToClose.clicked += () => ClosePanel();
         buttonSettings.clicked += () => OpenSettings();
         buttonSettingsClose.clicked += () => ClosePanel();
-
         buttonExit.clicked += EndGameClicked;
 
         deletionToolTip.visible = false;
@@ -123,11 +125,17 @@ public class UIGameRuntime : MonoBehaviour
         SceneManager.LoadScene("GameMenu");
     }
 
+    private void DisplayCurrentFunds()
+    {
+        cash.text = "$ " + gs.getCurrentFunds();
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             ClosePanel();
+            DisplayCurrentFunds();
         }
     }
 

@@ -2326,10 +2326,10 @@ MonoBehaviour:
   sceneCamera: {fileID: 330585545}
   placementLayermask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   structureMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
 --- !u!4 &270180344
 Transform:
   m_ObjectHideFlags: 0
@@ -7616,6 +7616,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1158202627}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &847879754 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 374020590127495022, guid: 16d24741e8d139a4881686def8f4a500,
+    type: 3}
+  m_PrefabInstance: {fileID: 703025022}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b90b8c67f8c209a4c9186d6f51ddf693, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &852692618
 GameObject:
   m_ObjectHideFlags: 0
@@ -14134,6 +14146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ps: {fileID: 1941986807}
+  gs: {fileID: 847879754}
 --- !u!114 &1709156262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14760,6 +14773,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ps: {fileID: 1941986807}
+  gs: {fileID: 0}
 --- !u!114 &1801080327
 MonoBehaviour:
   m_ObjectHideFlags: 0

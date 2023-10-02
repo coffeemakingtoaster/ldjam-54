@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 
 public class TrainTrack : MonoBehaviour
 {
@@ -10,11 +11,11 @@ public class TrainTrack : MonoBehaviour
     public float GRID_SIZE = 0.1f;
     public List<TrainTrack> ConnectedTracks;
 
+    public List<TrackSwitch> ConnectedSwitches;
+
     public int MaxConnectedTracks;
 
-    public bool CanBeTraversedBothWays = true;
-
-    public List<TrainTrack> BlackListedTrainTracks;
+    public bool isInSwitch = false;
 
     void Start()
     {
@@ -34,15 +35,13 @@ public class TrainTrack : MonoBehaviour
         {
             WayPoints.OrderBy((vec) => Vector3.Distance(vec, BaseWayPoint.transform.position));
         }
-        CanBeTraversedBothWays = true;
-        Debug.Log(transform.gameObject.name);
-        if (transform.gameObject.name == "LeftToRight" || transform.gameObject.name == "RightToLeft")
+        if (transform.gameObject.name == "LeftToRight" || transform.gameObject.name == "StraightToRight" || transform.gameObject.name == "StraightToLeft")
         {
-            CanBeTraversedBothWays = false;
+            isInSwitch = true;
         }
     }
 
-    public void TryToFindAdjacent()
+    public void TryToFindAdjacent(bool isRecursion = false)
     {
         // No tracks to find here
         if (ConnectedTracks.Count >= MaxConnectedTracks)
@@ -56,6 +55,14 @@ public class TrainTrack : MonoBehaviour
             return;
         }
 
+        if (isInSwitch){
+            TrackSwitch parentSwitch = gameObject.transform.parent.GetComponent<TrackSwitch>();
+            parentSwitch.TryToFindAdjacent();
+            ConnectedTracks = new List<TrainTrack>(parentSwitch.ConnectedTracks);
+            ConnectedSwitches =  new List<TrackSwitch>(parentSwitch.ConnectedSwitches);
+            return;
+        }
+
         TrainTrack[] trainTracks = FindObjectsOfType<TrainTrack>();
         foreach (TrainTrack externalTrainTrack in trainTracks)
         {
@@ -65,15 +72,9 @@ public class TrainTrack : MonoBehaviour
                 continue;
             }
 
-            if (BlackListedTrainTracks.Contains(externalTrainTrack))
+            if (externalTrainTrack.isInSwitch || isInSwitch)
             {
-                Debug.LogWarning("Blacklisted");
                 continue;
-            }
-
-            if (!externalTrainTrack.CanBeTraversedBothWays){
-                externalTrainTrack.TryToFindAdjacent();
-                return;
             }
 
             if (externalTrainTrack.gameObject.layer == LayerMask.NameToLayer("Ignore Raycast"))
@@ -90,40 +91,13 @@ public class TrainTrack : MonoBehaviour
                 continue;
             }
 
-            List<float> distances = new List<float>(){
-                Vector3.Distance(WayPoints.Last(), externalTrainTrack.WayPoints[0]),
-            };
-
-            if (!CanBeTraversedBothWays)
+            List<float> distances = new List<float>
             {
-                // Add to previous
-                // Dont add to next
-                // Check if external track is BEFORE or AFTER current one way
-                // Before -> Add to external connected tracks, dont add to own
-                // After -> Add to own connected tracks, dont add to external
-                float startDistance = Mathf.Min(
-                        Vector3.Distance(WayPoints[0], externalTrainTrack.WayPoints[0]),
-                        Vector3.Distance(WayPoints[0], externalTrainTrack.WayPoints[1])
-                    );
-                float endDistance = Mathf.Min(
-                        Vector3.Distance(WayPoints[1], externalTrainTrack.WayPoints[0]),
-                        Vector3.Distance(WayPoints[1], externalTrainTrack.WayPoints[1])
-                    );
-                bool isCheckingPrevious = startDistance < endDistance;
-                float dst = Mathf.Min(startDistance, endDistance);
-                if(dst < 0.01f){
-                    if(isCheckingPrevious){
-                        externalTrainTrack.AddTrackToConnected(this);
-                    }else{
-                        AddTrackToConnected(externalTrainTrack);
-                    }
-                }
-                continue;
-            }
-
-            distances.Add(Vector3.Distance(WayPoints[0], externalTrainTrack.WayPoints.Last()));
-            distances.Add(Vector3.Distance(WayPoints[0], externalTrainTrack.WayPoints[0]));
-            distances.Add(Vector3.Distance(WayPoints.Last(), externalTrainTrack.WayPoints.Last()));
+                Vector3.Distance(WayPoints.Last(), externalTrainTrack.WayPoints[0]),
+                Vector3.Distance(WayPoints[0], externalTrainTrack.WayPoints.Last()),
+                Vector3.Distance(WayPoints[0], externalTrainTrack.WayPoints[0]),
+                Vector3.Distance(WayPoints.Last(), externalTrainTrack.WayPoints.Last())
+            };
 
             // Get lowest distance to of any entry or exit of current to any entry of exit of other
             float distance = distances.ToArray().Min();
@@ -135,6 +109,49 @@ public class TrainTrack : MonoBehaviour
             }
         }
         Debug.Log("Now connected to " + ConnectedTracks.Count);
+
+        TrackSwitch[] trackSwitches = FindObjectsOfType<TrackSwitch>();
+        foreach (TrackSwitch externalTrackSwitch in trackSwitches)
+        {
+
+            if (externalTrackSwitch.gameObject.layer == LayerMask.NameToLayer("Ignore Raycast"))
+            {
+                Debug.Log("Visualization");
+                continue;
+            }
+
+            // 0.23 as Sqrt(0.1 ** 2 + 0.2 ** 2) = 0.22 
+            // This occurs when the item is flipped 180 degrees in comparison to this one 
+            if (Vector3.Distance(transform.position, externalTrackSwitch.transform.position) > 0.23f)
+            {
+                Debug.Log("Not adjacent");
+                continue;
+            }
+
+            // IDEA:
+            // Get connected trackswitches and request the active traintrack for a site when needed
+            float distance = Mathf.Min(
+                Vector3.Distance(WayPoints[0], externalTrackSwitch.Left.transform.position),
+                Vector3.Distance(WayPoints.Last(), externalTrackSwitch.Left.transform.position),
+                Vector3.Distance(WayPoints[0], externalTrackSwitch.Right.transform.position),
+                Vector3.Distance(WayPoints.Last(), externalTrackSwitch.Right.transform.position),
+                Vector3.Distance(WayPoints[0], externalTrackSwitch.Straight.transform.position),
+                Vector3.Distance(WayPoints.Last(), externalTrackSwitch.Straight.transform.position)
+            );
+
+            if (distance < 0.01f)
+            {
+                if (!ConnectedSwitches.Contains(externalTrackSwitch))
+                {
+                    ConnectedSwitches.Add(externalTrackSwitch);
+                }
+                if (!externalTrackSwitch.ConnectedTracks.Contains(this))
+                {
+                    externalTrackSwitch.ConnectedTracks.Add(this);
+                }
+                // TODO: When train is in switch it needs to be able to find adjacent tracks and other switches
+            }
+        }
     }
 
     public void ValidateConnectedTracks()

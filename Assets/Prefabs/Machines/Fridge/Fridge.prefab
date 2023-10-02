@@ -306,7 +306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InInventorySize: 0
-  OutInventorySize: 0
+  OutInventorySize: 10
   processes: []
   activeProcess: {fileID: 11400000, guid: d65821a3431994548b36549d47223215, type: 2}
   InInventoryPoint: {fileID: 0}

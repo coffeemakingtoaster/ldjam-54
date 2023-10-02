@@ -45,7 +45,7 @@ public class Machine : MonoBehaviour
     {
         isProcessing = false;
         isDisplaying = false;
-        Debug.Log("Endanim");
+        //Debug.Log("Endanim");
         Destroy(display);
         activeProcess.finishProcess(ref InInventory, ref OutInventory, ref CurrentOutInvSize);
     }

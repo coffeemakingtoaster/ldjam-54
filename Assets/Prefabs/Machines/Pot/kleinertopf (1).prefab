@@ -306,7 +306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InInventorySize: 0
-  OutInventorySize: 0
+  OutInventorySize: 10
   processes:
   - {fileID: 11400000, guid: b379d8cdbf9e77a4c8b19988ff5b7147, type: 2}
   - {fileID: 11400000, guid: 6a8602f4d6737344bb436879edc96d4c, type: 2}
@@ -316,6 +316,7 @@ MonoBehaviour:
   OutInventoryPoint: {fileID: 2837303561448375486}
   FoodPoint: {fileID: 4293975632403740351}
   isProcessing: 0
+  isDisplaying: 0
   CurrentInInvSize: 0
   CurrentOutInvSize: 0
 --- !u!95 &8825874851654080445

@@ -1,6 +1,6 @@
 Button.gameui:hover {
     border-width: 7px;
-    border-color: #F2E887;
+    border-color: rgb(242, 232, 135);
     border-radius: 10px;
 }
 
@@ -17,15 +17,15 @@ VisualElement.Board {
 
 Button.mainmenu {
     border-radius: 10px;
-    border-width: 0px;
-    background-color: #483E3F;
-    color: #F2E887;
+    border-width: 0;
+    background-color: rgb(72, 62, 63);
+    color: rgb(242, 232, 135);
 }
 
 Button.mainmenu:hover {
     border-width: 7px;
     border-radius: 10px;
-    border-color: #F2E887;
+    border-color: rgb(242, 232, 135);
 }
 
 Button.itemtooltip {
@@ -37,3 +37,5 @@ Button.itemtooltip:hover {
     border-radius: 5px;
 }
 
+VisualElement.TrackTooltip {
+}

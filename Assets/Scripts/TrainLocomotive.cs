@@ -1,10 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TrainLocomotive : MonoBehaviour
 {
     public TrainTrack currentTrainTrack;
+
+    public TrainTrack previousTrainTrack;
     public float SPEED = 5f;
     public bool isDrivingInReverse = false;
 
@@ -92,14 +95,28 @@ public class TrainLocomotive : MonoBehaviour
 
         foreach (TrainTrack possibleTrainTrack in currentTrainTrack.ConnectedTracks)
         {
+            Debug.Log("Current shortest distance " + shortestDistance);
+            Debug.Log(possibleTrainTrack.transform.gameObject.name);
             // This would just create a loop
-            if (possibleTrainTrack.Equals(currentTrainTrack))
+            if (possibleTrainTrack.Equals(currentTrainTrack) || possibleTrainTrack.Equals(previousTrainTrack))
             {
                 continue;
             }
 
+            // Is this ugly? Yes
+            // Is this a fix without understanding the underlying issue? Absolutely
+            // But does it work? Also yes
+            if (previousTrainTrack != null)
+            {
+                if (previousTrainTrack.WayPoints.Contains(possibleTrainTrack.WayPoints[0]) || previousTrainTrack.WayPoints.Contains(possibleTrainTrack.WayPoints.Last()))
+                {
+                    continue;
+                }
+            }
+
             float startDistance = Vector3.Distance(transform.position, possibleTrainTrack.WayPoints[0]);
             float endDistance = Vector3.Distance(transform.position, possibleTrainTrack.WayPoints.Last());
+            Debug.Log("CurrentPosition: " + transform.position);
             Debug.Log("Startdistance: " + startDistance.ToString() + " Enddistance: " + endDistance.ToString());
             // Shortest distance to first waypoint of track            
             if (startDistance < shortestDistance)
@@ -110,6 +127,7 @@ public class TrainLocomotive : MonoBehaviour
             }
 
             // Shortest distance is to last waypoint of track => reverse
+            // Dont do this on one way tracks
             if (endDistance < shortestDistance)
             {
                 shortestDistance = startDistance;
@@ -124,6 +142,7 @@ public class TrainLocomotive : MonoBehaviour
             Debug.LogWarning("No valid next track for train");
             return;
         }
+        previousTrainTrack = currentTrainTrack;
         currentTrainTrack = closestTrainTrack;
         // Clear all visited waypoints
         visitedWaypoints = new List<Vector3>();

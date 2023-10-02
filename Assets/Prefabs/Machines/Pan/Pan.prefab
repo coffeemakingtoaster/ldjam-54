@@ -402,6 +402,7 @@ MonoBehaviour:
   activeProcess: {fileID: 11400000, guid: 72118cfd19b0b654599f91743f96cb8b, type: 2}
   InInventoryPoint: {fileID: 5418779676878141375}
   OutInventoryPoint: {fileID: 4553618361323014454}
+  FoodPoint: {fileID: 7103863824054934699}
   isProcessing: 0
   CurrentInInvSize: 0
   CurrentOutInvSize: 0

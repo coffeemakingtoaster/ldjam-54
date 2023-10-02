@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5100949337993730456
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3506308188059951503}
+  m_Layer: 8
+  m_Name: FoodPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3506308188059951503
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5100949337993730456}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.011, y: -0.24, z: -0.08}
+  m_LocalScale: {x: 1.6666666, y: 5, z: 2.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5170719228439881231}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5522874455193563280
 GameObject:
   m_ObjectHideFlags: 0
@@ -101,6 +132,7 @@ Transform:
   m_LocalScale: {x: 0.6, y: 0.2, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3506308188059951503}
   - {fileID: 9181983935166375999}
   - {fileID: 3902570148461437195}
   - {fileID: 5084400294004048999}
@@ -197,6 +229,7 @@ MonoBehaviour:
   activeProcess: {fileID: 11400000, guid: ecc29dc76f1b13e4481b5e3965cd29f4, type: 2}
   InInventoryPoint: {fileID: 5522874455193563280}
   OutInventoryPoint: {fileID: 7735633273182029900}
+  FoodPoint: {fileID: 5100949337993730456}
   isProcessing: 0
   CurrentInInvSize: 0
   CurrentOutInvSize: 0

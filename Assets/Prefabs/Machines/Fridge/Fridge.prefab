@@ -104,6 +104,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 067c441a66b771946afa01122d739a37, type: 3}
+--- !u!1 &7472117072618718254 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5962675494008371325, guid: 067c441a66b771946afa01122d739a37,
+    type: 3}
+  m_PrefabInstance: {fileID: 3822965810492193875}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7571764171917994453 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6636520535598175622, guid: 067c441a66b771946afa01122d739a37,
@@ -186,6 +192,12 @@ PrefabInstance:
 --- !u!4 &1794699205705896655 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8812462933212739465, guid: 9b1093fabd28a154eb4fa436f9b4f24e,
+    type: 3}
+  m_PrefabInstance: {fileID: 7107847016372741446}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2331411891914320591 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4827564065827786633, guid: 9b1093fabd28a154eb4fa436f9b4f24e,
     type: 3}
   m_PrefabInstance: {fileID: 7107847016372741446}
   m_PrefabAsset: {fileID: 0}
@@ -309,8 +321,9 @@ MonoBehaviour:
   OutInventorySize: 0
   processes: []
   activeProcess: {fileID: 11400000, guid: d65821a3431994548b36549d47223215, type: 2}
-  InInventoryPoint: {fileID: 0}
-  OutInventoryPoint: {fileID: 0}
+  InInventoryPoint: {fileID: 7472117072618718254}
+  OutInventoryPoint: {fileID: 2331411891914320591}
+  FoodPoint: {fileID: 6636485865713295737}
   isProcessing: 0
   CurrentInInvSize: 0
   CurrentOutInvSize: 0

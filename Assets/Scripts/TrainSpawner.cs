@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TrainSpawner : MonoBehaviour
@@ -37,21 +38,25 @@ public class TrainSpawner : MonoBehaviour
         {
             if (!hasLocomotiveInsideIt)
             {
-                GameObject locomotive = Instantiate(LocomotivePrefab, SpawnPoint.transform.position, Quaternion.Euler(0,180,0));
+                GameObject locomotive = Instantiate(LocomotivePrefab, SpawnPoint.transform.position, Quaternion.Euler(0, 180, 0));
                 locomotive.GetComponent<TrainLocomotive>().currentTrainTrack = firstTrainTrack;
                 Vector3 offset = SecondarySpawnPoint.transform.position - SpawnPoint.transform.position;
                 Debug.Log(offset);
                 GameObject previous = locomotive;
-                for (int i = 0; i < WagonAmount; i++){
+                for (int i = 0; i < WagonAmount; i++)
+                {
                     BallCoupling endCoupling = previous.transform.Find("EndCoupling").gameObject.GetComponent<BallCoupling>();
                     Debug.Log(endCoupling.GetPosition());
-                    previous = Instantiate(WagonPrefab, locomotive.transform.position + offset *  i , Quaternion.identity);
+                    previous = Instantiate(WagonPrefab, locomotive.transform.position + offset * i, Quaternion.identity);
                     previous.GetComponent<TrainWagon>().PreviousBallCoupling = endCoupling;
-                    if (InitialCargo){
+                    if (InitialCargo)
+                    {
                         previous.GetComponent<TrainWagon>().payload = InitialCargo;
                     }
                 }
-            } else{
+            }
+            else
+            {
                 Debug.Log("Not spawning train as previous train has not left yet");
             }
             yield return new WaitForSeconds(SpawnRate);
@@ -71,11 +76,15 @@ public class TrainSpawner : MonoBehaviour
     void OnTriggerExit(Collider other)
     {
         TrainLocomotive locomotive = other.gameObject.GetComponent<TrainLocomotive>();
-        if (locomotive == null)
+        TrainWagon wagon = other.gameObject.GetComponent<TrainWagon>();
+        if (locomotive != null)
         {
-            return;
+            hasLocomotiveInsideIt = false;
+            locomotive.hasSpawnProtection = false;
         }
-        hasLocomotiveInsideIt = false;
+        if(wagon != null){
+            wagon.hasSpawnProtection = false;
+        }
     }
 
 }

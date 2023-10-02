@@ -61,10 +61,33 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: bb26b99a7ce174b4cb8bb8059f641424,
         type: 3}
       propertyPath: m_Name
-      value: Salad (1)
+      value: Salad
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bb26b99a7ce174b4cb8bb8059f641424,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6906848120789516742}
   m_SourcePrefab: {fileID: 100100000, guid: bb26b99a7ce174b4cb8bb8059f641424, type: 3}
+--- !u!1 &2693209624911288910 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: bb26b99a7ce174b4cb8bb8059f641424,
+    type: 3}
+  m_PrefabInstance: {fileID: 2999778004354017055}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6906848120789516742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2693209624911288910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8f3c9b928ca13345b3470dfc3a2f97e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value: 0

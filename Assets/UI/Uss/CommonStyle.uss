@@ -1,11 +1,11 @@
 Button.gameui:hover {
     border-width: 7px;
     border-color: rgb(242, 232, 135);
-    border-radius: 10px;
+    border-radius: 12px;
 }
 
 Button.gameui {
-    border-radius: 10px;
+    border-radius: 12px;
     border-width: 3px;
     border-color: rgba(242, 232, 135, 0.9);
 }

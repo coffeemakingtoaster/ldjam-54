@@ -11,19 +11,21 @@ public class UIGameRuntime : MonoBehaviour
     private VisualElement gameUI;
     private VisualElement menuUI;
     private VisualElement trackToolTip;
-    private Button buttonSettings;
     private Button buttonCuttingBoard;
     private Button buttonPlate;
     private Button buttonPan;
     private Button buttonPot;
     private Button buttonFry;
     private Button buttonMeat;
-    private Button buttonExtra;
     private Button trackStraight;
     private Button trackTurn;
     private Button trackSwitch;
+    private Button deleteTool;
+    private Button buttonSettings;
+    private Button buttonExit;
+    private Button buttonHowTo;
     private Label cash;
-    private VisualElement buttonWrapper;
+
     private GameObject PlacementSystem;
     private void Awake()
     {
@@ -32,38 +34,67 @@ public class UIGameRuntime : MonoBehaviour
 
         buttonCuttingBoard = root.Q<Button>("CuttingBoard");
         buttonPlate = root.Q<Button>("Plate");
+        buttonPan = root.Q<Button>("Pan");
+        buttonPot = root.Q<Button>("Pot");
+        buttonFry = root.Q<Button>("Fry");
+        buttonMeat = root.Q<Button>("Meat");
+
+        trackStraight = root.Q<Button>("TrackStraight");
         trackTurn = root.Q<Button>("TrackTurn");
+        trackSwitch = root.Q<Button>("TrackSwitch");
 
-        
-        
+        deleteTool = root.Q<Button>("DeleteTool");
+
         trackToolTip = root.Q<VisualElement>("TrackTooltip");
-        Button buttonExit = root.Q<Button>("ButtonExit");
+        buttonExit = root.Q<Button>("ButtonExit");
         buttonSettings = root.Q<Button>("ButtonSettings");
-        buttonWrapper = root.Q<VisualElement>("MenuBar");
-        //gameUI = root.Q<VisualElement>("MenuBar");
-        Button buttonHowTo = root.Q<Button>("ButtonHowTo");
+        buttonHowTo = root.Q<Button>("ButtonHowTo");
 
-        //buttonSchneidebrett.clicked += () => ps.StartPlacement(2);
+        // -- ASSIGNMENT --
+        // Devices
+        buttonCuttingBoard.clicked += () => StartPlacement(2);
+        buttonPlate.clicked += () => StartPlacement(2);
+        buttonPan.clicked += () => StartPlacement(2);
+        buttonPot.clicked += () => StartPlacement(2);
+        buttonFry.clicked += () => StartPlacement(2);
+        buttonMeat.clicked += () => StartPlacement(2);
+
+        // Tracks
+        trackStraight.clicked += () => TrackClicked(1);
+        trackTurn.clicked += () => TrackClicked(4);
+        trackSwitch.clicked += () => TrackClicked(3);
+
+        // Tools
+        deleteTool.clicked += () => StartDelete();
+
         buttonExit.clicked += ExitApplicationClicked;
-        trackTurn.clicked += TrackTurnClicked;
-        buttonPlate.clicked += () => Debug.Log(buttonPlate);
-        //buttonSettings.clicked += () => ps.StartPlacement(0);
 
-
-        //buttonSettings.clicked += SettingsClicked;
+        trackToolTip.visible = false;
     }
     
     private void SettingsClicked()
     {
-        buttonWrapper.Clear();
+        //buttonWrapper.Clear();
     }
 
-    private void TrackTurnClicked()
+    private void TrackClicked(int i)
     {
         trackToolTip.visible = true;
-        Debug.Log("TrackTurn");
+        ps.StartPlacement(i);
+        Debug.Log("Track " + i);
     }
 
+    private void StartPlacement(int i)
+    {
+        ps.StartPlacement(i);
+        Debug.Log("StartPlacement " + i);
+    }
+
+    private void StartDelete()
+    {
+        ps.StartDelete();
+        Debug.Log("StartDelete");
+    }
 
     private void ExitApplicationClicked()
     {

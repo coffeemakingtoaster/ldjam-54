@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 554392838831514417}
   - component: {fileID: 1695305646763580041}
   - component: {fileID: 6547942994056433886}
+  - component: {fileID: 2922913252576061142}
   m_Layer: 0
   m_Name: Locomotive
   m_TagString: Untagged
@@ -100,6 +101,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!136 &2922913252576061142
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1481949698903116986}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.018055022
+  m_Height: 0.06733063
+  m_Direction: 2
+  m_Center: {x: 0.0000025536865, y: 0.045242593, z: 0.001094386}
 --- !u!1 &7136157686979805617
 GameObject:
   m_ObjectHideFlags: 0

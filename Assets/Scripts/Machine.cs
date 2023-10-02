@@ -12,6 +12,7 @@ public class Machine : MonoBehaviour
     public Process activeProcess;
     public GameObject InInventoryPoint;
     public GameObject OutInventoryPoint;
+    public GameObject FoodPoint;
 
     public bool isProcessing = false;
     
@@ -29,7 +30,10 @@ public class Machine : MonoBehaviour
     {
         activeProcess.process(ref InInventory, ref OutInventory, ref OutInventorySize, gameObject, ref CurrentInInvSize, ref CurrentOutInvSize, ref isProcessing);
 
-        // activeprocess.output.firstitemfromdictionary
+        if (isProcessing && activeProcess.inputItems[0])
+        {
+            Instantiate(activeProcess.inputItems[0], FoodPoint.transform.localPosition, Quaternion.identity);
+        }
     }
 
     public void endAnim()

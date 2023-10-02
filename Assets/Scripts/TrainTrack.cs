@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
+using System;
 
 public class TrainTrack : MonoBehaviour
 {
@@ -41,10 +42,13 @@ public class TrainTrack : MonoBehaviour
         }
     }
 
-    public void TryToFindAdjacent(bool isRecursion = false)
+    public void TryToFindAdjacent()
     {
+
+        CleanupConnectedTracks();
+
         // No tracks to find here
-        if (ConnectedTracks.Count >= MaxConnectedTracks)
+        if ((ConnectedTracks.Count + ConnectedSwitches.Count) >= MaxConnectedTracks)
         {
             return;
         }
@@ -55,11 +59,12 @@ public class TrainTrack : MonoBehaviour
             return;
         }
 
-        if (isInSwitch){
+        if (isInSwitch)
+        {
             TrackSwitch parentSwitch = gameObject.transform.parent.GetComponent<TrackSwitch>();
             parentSwitch.TryToFindAdjacent();
             ConnectedTracks = new List<TrainTrack>(parentSwitch.ConnectedTracks);
-            ConnectedSwitches =  new List<TrackSwitch>(parentSwitch.ConnectedSwitches);
+            ConnectedSwitches = new List<TrackSwitch>(parentSwitch.ConnectedSwitches);
             return;
         }
 
@@ -154,10 +159,32 @@ public class TrainTrack : MonoBehaviour
         }
     }
 
-    public void ValidateConnectedTracks()
+    public void CleanupConnectedTracks()
     {
-        // TODO: implement me
-        return;
+        foreach (TrainTrack trainTrack in ConnectedTracks)
+        {
+            try
+            {
+                string _ = trainTrack.transform.gameObject.name;
+            }
+            catch (Exception _)
+            {
+                // Remove deleted item
+                ConnectedTracks.Remove(trainTrack);
+            }
+        }
+        foreach (TrackSwitch trainSwitch in ConnectedSwitches)
+        {
+            try
+            {
+                string _ = trainSwitch.transform.gameObject.name;
+            }
+            catch (Exception _)
+            {
+                // Remove deleted item
+                ConnectedSwitches.Remove(trainSwitch);
+            }
+        }
     }
 
     public void PreDeleteHook()

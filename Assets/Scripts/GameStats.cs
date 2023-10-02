@@ -10,4 +10,9 @@ public class GameStats : MonoBehaviour
         currentMoney += amount;
         Debug.Log("Now at "+ currentMoney.ToString());
     }
+
+    public int getCurrentFunds()
+    {
+        return currentMoney;
+    }
 }

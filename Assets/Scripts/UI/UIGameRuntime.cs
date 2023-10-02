@@ -15,7 +15,6 @@ public class UIGameRuntime : MonoBehaviour
     private VisualElement tutorialPanel;
     private VisualElement settingsPanel;
     private Button buttonCuttingBoard;
-    private Button buttonPlate;
     private Button buttonPan;
     private Button buttonPot;
     private Button buttonFry;
@@ -38,7 +37,6 @@ public class UIGameRuntime : MonoBehaviour
         root = GetComponent<UIDocument>().rootVisualElement;
 
         buttonCuttingBoard = root.Q<Button>("CuttingBoard");
-        buttonPlate = root.Q<Button>("Plate");
         buttonPan = root.Q<Button>("Pan");
         buttonPot = root.Q<Button>("Pot");
         buttonFry = root.Q<Button>("Fry");
@@ -63,7 +61,6 @@ public class UIGameRuntime : MonoBehaviour
         // -- ASSIGNMENT --
         // Devices
         buttonCuttingBoard.clicked += () => StartPlacement(0);
-        buttonPlate.clicked += () => StartPlacement(1);
         buttonPan.clicked += () => StartPlacement(2);
         buttonPot.clicked += () => StartPlacement(3);
         buttonFry.clicked += () => StartPlacement(4);

@@ -13,6 +13,7 @@ public class UIGameRuntime : MonoBehaviour
     private VisualElement menuUI;
     private VisualElement placementToolTip;
     private VisualElement deletionToolTip;
+    private VisualElement controlsToolTip;
     private VisualElement tutorialPanel;
     private Button buttonCuttingBoard;
     private Button buttonPan;
@@ -50,6 +51,7 @@ public class UIGameRuntime : MonoBehaviour
 
         placementToolTip = root.Q<VisualElement>("PlacementTooltip");
         deletionToolTip = root.Q<VisualElement>("DeletionTooltip");
+        controlsToolTip = root.Q<VisualElement>("ControlsTooltip");
         tutorialPanel = root.Q<VisualElement>("HowToOverlay");
         buttonExit = root.Q<Button>("ButtonExit");
         buttonMute = root.Q<Button>("ButtonMute");
@@ -79,6 +81,7 @@ public class UIGameRuntime : MonoBehaviour
         buttonMute.clicked += ToggleAllSound;
 
         deletionToolTip.visible = false;
+        controlsToolTip.visible = true;
         placementToolTip.visible = false;
         tutorialPanel.visible = false;
 
@@ -89,6 +92,7 @@ public class UIGameRuntime : MonoBehaviour
 
     private void StartPlacement(int i)
     {
+        controlsToolTip.visible = false;
         deletionToolTip.visible = false;
         placementToolTip.visible = true;
         ps.StartPlacement(i);
@@ -96,6 +100,7 @@ public class UIGameRuntime : MonoBehaviour
 
     private void StartDelete()
     {
+        controlsToolTip.visible = false;
         placementToolTip.visible = false;
         deletionToolTip.visible = true;
         ps.StartDelete();
@@ -110,6 +115,7 @@ public class UIGameRuntime : MonoBehaviour
     {
         placementToolTip.visible = false;
         deletionToolTip.visible = false;
+        controlsToolTip.visible = false;
         tutorialPanel.visible = false;
     }
 

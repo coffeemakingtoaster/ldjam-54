@@ -158,4 +158,18 @@ public class TrainLocomotive : MonoBehaviour
         unvisitedWaypoints = futureWaypoints;
         currentTrainTrack.TryToFindAdjacent();
     }
+
+
+     void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.Equals(this)){
+            return;
+        }
+        Debug.Log("Collision");
+        TrainWagon trainWagon = collision.gameObject.GetComponent<TrainWagon>();
+        TrainLocomotive trainLocomotive = collision.gameObject.GetComponent<TrainLocomotive>();
+        if (trainWagon != null || trainLocomotive != null){
+            Destroy(this.gameObject);
+        }
+    }
 }

@@ -28,13 +28,14 @@ public class TrackSwitch : MonoBehaviour
     }
 
 
-    //public void OnMouseDown(){
-    //    ToggleActive();
-    //}
+    public void OnMouseDown(){
+        ToggleActive();
+    }
 
     private void ToggleActive()
     {
-        if (StraightToLeft.enabled)
+        Debug.Log("Toggle active");
+        if (StraightToLeft.transform.gameObject.activeSelf)
         {
             SetActive(StraightToRight);
             return;

@@ -26,10 +26,12 @@ public class UIGameRuntime : MonoBehaviour
     private Button deleteTool;
     private Button buttonSettings;
     private Button buttonExit;
+    private Button buttonMute;
     private Button buttonHowTo;
     private Button buttonHowToClose;
     private Button buttonSettingsClose;
     private Label cash;
+    private bool muteSound;
 
     private GameObject PlacementSystem;
     private void Awake()
@@ -55,6 +57,7 @@ public class UIGameRuntime : MonoBehaviour
         settingsPanel = root.Q<VisualElement>("SettingsOverlay");
         buttonExit = root.Q<Button>("ButtonExit");
         buttonSettings = root.Q<Button>("ButtonSettings");
+        buttonMute = root.Q<Button>("ButtonMute");
         buttonHowTo = root.Q<Button>("ButtonHowTo");
         buttonHowToClose = root.Q<Button>("CloseTutorial");
         buttonSettingsClose = root.Q<Button>("CloseSettings");
@@ -81,10 +84,14 @@ public class UIGameRuntime : MonoBehaviour
         buttonSettings.clicked += () => OpenSettings();
         buttonSettingsClose.clicked += () => ClosePanel();
         buttonExit.clicked += EndGameClicked;
+        buttonMute.clicked += ToggleAllSound;
 
         deletionToolTip.visible = false;
         placementToolTip.visible = false;
         tutorialPanel.visible = false;
+
+        muteSound = false;
+        AudioListener.volume = 0.4f;
     }
 
     private void StartPlacement(int i)
@@ -139,5 +146,18 @@ public class UIGameRuntime : MonoBehaviour
 
         DisplayCurrentFunds();
     }
+
+    public void ToggleAllSound()
+{
+    muteSound = !muteSound;
+
+    if (muteSound)
+    {
+        AudioListener.volume = 0;
+    } else {
+        AudioListener.volume = 0.4f;
+    }
+
+}
 
 }

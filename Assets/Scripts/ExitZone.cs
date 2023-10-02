@@ -6,6 +6,12 @@ using UnityEngine;
 public class ExitZone : MonoBehaviour
 {
 
+    GameStats gameStats;
+
+    void Start(){
+        gameStats = FindAnyObjectByType<GameStats>();
+    }
+
     void OnTriggerEnter(Collider other){
         TrainWagon wagon = other.gameObject.GetComponent<TrainWagon>();
         TrainLocomotive locomotive = other.gameObject.GetComponent<TrainLocomotive>();
@@ -13,10 +19,16 @@ public class ExitZone : MonoBehaviour
         if ( wagon == null && locomotive == null){
             return;
         }
-        if (wagon != null){
-           // Add funds 
-           return;
+
+        if (locomotive != null){
+            Debug.LogWarning("teleporting");
+            locomotive.transform.position = transform.position;
         }
-        Destroy(other.gameObject);
+        if (wagon != null){
+            if ( wagon.payload != null && wagon.payload.GetComponent<SellValue>() != null){
+                gameStats.addFunds(wagon.payload.GetComponent<SellValue>().Value);
+            }
+        }
+        Destroy(other.gameObject, 1);
     }
 }

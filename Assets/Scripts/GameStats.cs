@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class GameStats : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int currentMoney = 0;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void addFunds(int amount){
+        currentMoney += amount;
+        Debug.Log("Now at "+ currentMoney.ToString());
     }
 }

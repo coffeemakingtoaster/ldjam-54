@@ -51,7 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentTrainTrack: {fileID: 0}
   previousTrainTrack: {fileID: 0}
-  SPEED: 0.05
+  SPEED: 0.1
   isDrivingInReverse: 0
 --- !u!65 &1695305646763580041
 BoxCollider:

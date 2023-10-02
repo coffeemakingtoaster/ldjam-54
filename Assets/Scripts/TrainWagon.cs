@@ -10,7 +10,11 @@ public class TrainWagon : MonoBehaviour
 
     public GameObject payload;
 
+    public GameObject payloadDisplay;
+
     private Vector3 previousPosition;
+
+     public bool hasSpawnProtection = true;
 
     public float SPEED = 0.05f;
     void Start()
@@ -74,7 +78,10 @@ public class TrainWagon : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
-                if (collision.gameObject.Equals(this)){
+        if (hasSpawnProtection){
+            return;
+        }
+        if (collision.gameObject.Equals(this)){
             return;
         }
         TrainWagon trainWagon = collision.gameObject.GetComponent<TrainWagon>();

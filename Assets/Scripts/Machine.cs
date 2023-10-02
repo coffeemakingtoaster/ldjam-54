@@ -15,11 +15,14 @@ public class Machine : MonoBehaviour
     public GameObject FoodPoint;
 
     public bool isProcessing = false;
+    public bool isDisplaying = false;
     
     //public GameObject tomato;
 
     public int CurrentInInvSize = 0;
     public int CurrentOutInvSize = 0;
+
+    private GameObject display;
 
     public void Start()
     {
@@ -29,17 +32,21 @@ public class Machine : MonoBehaviour
     public void Update()
     {
         activeProcess.process(ref InInventory, ref OutInventory, ref OutInventorySize, gameObject, ref CurrentInInvSize, ref CurrentOutInvSize, ref isProcessing);
-
-        if (isProcessing && activeProcess.inputItems[0])
+        //Debug.Log(activeProcess.inputItems[0]);
+        if (isProcessing && activeProcess.inputItems.Length > 0  && !isDisplaying)
         {
-            Instantiate(activeProcess.inputItems[0], FoodPoint.transform.localPosition, Quaternion.identity);
+            Debug.Log("Instantiating");
+            display = Instantiate(activeProcess.inputItems[0], gameObject.transform.position+FoodPoint.transform.localPosition, Quaternion.identity);
+            isDisplaying = true;
         }
     }
 
     public void endAnim()
     {
         isProcessing = false;
+        isDisplaying = false;
         Debug.Log("Endanim");
+        Destroy(display);
         activeProcess.finishProcess(ref InInventory, ref OutInventory, ref CurrentOutInvSize);
     }
 

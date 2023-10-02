@@ -56,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 8786287452273170885}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.07, y: 0.0219, z: 0.177}
+  m_LocalPosition: {x: 0.07, y: 0.0512, z: 0.177}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2386,6 +2386,7 @@ MonoBehaviour:
   OutInventoryPoint: {fileID: 1855072773231365858}
   FoodPoint: {fileID: 8786287452273170885}
   isProcessing: 0
+  isDisplaying: 0
   CurrentInInvSize: 0
   CurrentOutInvSize: 0
 --- !u!95 &4867671534606111501

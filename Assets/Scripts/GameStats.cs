@@ -19,4 +19,9 @@ public class GameStats : MonoBehaviour
     {
         return currentMoney;
     }
+
+    public void spendFunds(int amount){
+        currentMoney -= amount;
+        Debug.Log("Now at "+ currentMoney.ToString());
+    }
 }

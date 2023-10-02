@@ -6937,6 +6937,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newMaterial: {fileID: 2100000, guid: 0d1459ee5b3ac3749b5efa2c8424d08e, type: 2}
+  start: {x: 18, y: 1}
+  end: {x: 24, y: 2}
 --- !u!65 &498029902
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7894,6 +7896,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bridge7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: daa2e0d208e1756459c0b8ba74b3caef,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9808,6 +9815,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 374020590127495022, guid: 16d24741e8d139a4881686def8f4a500,
+        type: 3}
+      propertyPath: currentMoney
+      value: 750
+      objectReference: {fileID: 0}
     - target: {fileID: 6127445195601537439, guid: 16d24741e8d139a4881686def8f4a500,
         type: 3}
       propertyPath: m_Name
@@ -10502,6 +10514,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newMaterial: {fileID: 2100000, guid: 0d1459ee5b3ac3749b5efa2c8424d08e, type: 2}
+  start: {x: 3, y: -20}
+  end: {x: 4, y: -11}
 --- !u!65 &791507329
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13598,6 +13612,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newMaterial: {fileID: 2100000, guid: 0d1459ee5b3ac3749b5efa2c8424d08e, type: 2}
+  start: {x: 26, y: 10}
+  end: {x: 27, y: 30}
 --- !u!65 &1091762275
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14039,6 +14055,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bridge8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e6305b0782aee0148a68358ed32ad89b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14550,6 +14571,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bridge10 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 44b3918c921a5ba42891a8110832c182,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14582,6 +14608,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newMaterial: {fileID: 2100000, guid: 0d1459ee5b3ac3749b5efa2c8424d08e, type: 2}
+  start: {x: -25, y: 17}
+  end: {x: -13, y: 18}
 --- !u!65 &1182717562
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16211,6 +16239,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bridge20
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 63cd4759a0e4df84280eb1bb685871b8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -17828,6 +17861,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newMaterial: {fileID: 2100000, guid: 0d1459ee5b3ac3749b5efa2c8424d08e, type: 2}
+  start: {x: -5, y: 1}
+  end: {x: 2, y: 2}
 --- !u!65 &1518780068
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23001,6 +23036,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bridge10
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 44b3918c921a5ba42891a8110832c182,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

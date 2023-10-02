@@ -63,8 +63,8 @@ public class UIGameRuntime : MonoBehaviour
         buttonCuttingBoard.clicked += () => StartPlacement(3);
         buttonPan.clicked += () => StartPlacement(5);
         buttonPot.clicked += () => StartPlacement(4);
-        buttonFry.clicked += () => StartPlacement(4);
-        buttonMeat.clicked += () => StartPlacement(5);
+        buttonFry.clicked += () => StartPlacement(7);
+        buttonMeat.clicked += () => StartPlacement(6);
 
         // Tracks
         trackStraight.clicked += () => StartPlacement(0);

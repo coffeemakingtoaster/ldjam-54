@@ -34,7 +34,7 @@ public class GridData
         return returnVal;
     }
 
-    public bool CanPlaceObjectAt(Vector3Int gridPosition, Vector2Int objectSize)
+    public bool CanPlaceObjectAt(Vector3Int gridPosition, Vector2Int objectSize,int ID)
     {
         List<Vector3Int> positionToOccupy = CalculatePositions(gridPosition, objectSize);
         foreach (var pos in positionToOccupy)
@@ -44,7 +44,15 @@ public class GridData
             {
                 return false;
             }
-            if (placedObjects.ContainsKey(pos))
+            if ((ID==4|| ID==5) &&(MapArray.map[34 - pos.x, 49 - pos.z] != 2))
+            {
+                return false;
+            }
+            if ((ID != 4 && ID != 5) && (MapArray.map[34 - pos.x, 49 - pos.z] == 2))
+            {
+                return false;
+            }
+                if (placedObjects.ContainsKey(pos))
             {
                 //Debug.Log("not here");
                 return false;

@@ -7,7 +7,6 @@ using static PlacementSystem;
 
 public class UIRuntime : MonoBehaviour
 {   
-    [SerializeField] private PlacementSystem ps;
     private VisualElement root;
     private VisualElement gameUI;
     private VisualElement menuUI;
@@ -15,7 +14,6 @@ public class UIRuntime : MonoBehaviour
     private VisualElement settingsPanel;
     private Button buttonPlay;
     private Button buttonExit;
-    private Button buttonSettings;
     private Button buttonSettingsClose;
     private Button buttonHowTo;
     private Button buttonHowToClose;
@@ -26,8 +24,6 @@ public class UIRuntime : MonoBehaviour
         buttonPlay = root.Q<Button>("ButtonStart");
         buttonHowTo = root.Q<Button>("ButtonHowTo");
         buttonHowToClose = root.Q<Button>("CloseTutorial");
-        buttonSettings = root.Q<Button>("ButtonSettings");
-        buttonSettingsClose = root.Q<Button>("CloseSettings");
         buttonExit = root.Q<Button>("ButtonExit");
 
         settingsPanel = root.Q<VisualElement>("SettingsOverlay");
@@ -37,11 +33,8 @@ public class UIRuntime : MonoBehaviour
         buttonExit.clicked += ExitApplicationClicked;
         buttonHowTo.clicked += () => OpenTutorial();
         buttonHowToClose.clicked += () => ClosePanel();
-        buttonSettings.clicked += () => OpenSettings();
-        buttonSettingsClose.clicked += () => ClosePanel();
 
         tutorialPanel.visible = false;
-        settingsPanel.visible = false;
     }
 
     private void PlayGame()
@@ -62,7 +55,6 @@ public class UIRuntime : MonoBehaviour
     private void ClosePanel()
     {
         tutorialPanel.visible = false;
-        settingsPanel.visible = false;
     }
 
     void Update()

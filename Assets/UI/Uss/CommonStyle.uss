@@ -37,5 +37,11 @@ Button.itemtooltip:hover {
     border-radius: 5px;
 }
 
-VisualElement.TrackTooltip {
+Button.soundmute {
+    background-image: url("Assets/UI/Textures/Icons/Sound_Mute_Icon.png");
 }
+
+Button.soundon {
+    background-image: url("Assets/UI/Textures/Icons/Volume_Icon.png");
+}
+

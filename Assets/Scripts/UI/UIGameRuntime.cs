@@ -14,7 +14,6 @@ public class UIGameRuntime : MonoBehaviour
     private VisualElement placementToolTip;
     private VisualElement deletionToolTip;
     private VisualElement tutorialPanel;
-    private VisualElement settingsPanel;
     private Button buttonCuttingBoard;
     private Button buttonPan;
     private Button buttonPot;
@@ -24,12 +23,10 @@ public class UIGameRuntime : MonoBehaviour
     private Button trackTurn;
     private Button trackSwitch;
     private Button deleteTool;
-    private Button buttonSettings;
     private Button buttonExit;
     private Button buttonMute;
     private Button buttonHowTo;
     private Button buttonHowToClose;
-    private Button buttonSettingsClose;
     private Label cash;
     private bool muteSound;
 
@@ -54,13 +51,10 @@ public class UIGameRuntime : MonoBehaviour
         placementToolTip = root.Q<VisualElement>("PlacementTooltip");
         deletionToolTip = root.Q<VisualElement>("DeletionTooltip");
         tutorialPanel = root.Q<VisualElement>("HowToOverlay");
-        settingsPanel = root.Q<VisualElement>("SettingsOverlay");
         buttonExit = root.Q<Button>("ButtonExit");
-        buttonSettings = root.Q<Button>("ButtonSettings");
         buttonMute = root.Q<Button>("ButtonMute");
         buttonHowTo = root.Q<Button>("ButtonHowTo");
         buttonHowToClose = root.Q<Button>("CloseTutorial");
-        buttonSettingsClose = root.Q<Button>("CloseSettings");
 
         cash = root.Q<Label>("Cash");
 
@@ -81,8 +75,6 @@ public class UIGameRuntime : MonoBehaviour
         deleteTool.clicked += () => StartDelete();
         buttonHowTo.clicked += () => OpenTutorial();
         buttonHowToClose.clicked += () => ClosePanel();
-        buttonSettings.clicked += () => OpenSettings();
-        buttonSettingsClose.clicked += () => ClosePanel();
         buttonExit.clicked += EndGameClicked;
         buttonMute.clicked += ToggleAllSound;
 
@@ -92,6 +84,7 @@ public class UIGameRuntime : MonoBehaviour
 
         muteSound = false;
         AudioListener.volume = 0.4f;
+        buttonMute.AddToClassList(".soundon");
     }
 
     private void StartPlacement(int i)
@@ -99,7 +92,6 @@ public class UIGameRuntime : MonoBehaviour
         deletionToolTip.visible = false;
         placementToolTip.visible = true;
         ps.StartPlacement(i);
-        Debug.Log("StartPlacement " + i);
     }
 
     private void StartDelete()
@@ -114,17 +106,11 @@ public class UIGameRuntime : MonoBehaviour
         tutorialPanel.visible = true;
     }
 
-    private void OpenSettings()
-    {
-        settingsPanel.visible = true;
-    }
-
     private void ClosePanel()
     {
         placementToolTip.visible = false;
         deletionToolTip.visible = false;
         tutorialPanel.visible = false;
-        settingsPanel.visible = false;
     }
 
     private void EndGameClicked()

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13e5d8b215071ec489709fdd0cb4b62f, type: 3}
-  m_Name: SpawnSalad
+  m_Name: SpawnEgg
   m_EditorClassIdentifier: 
   timeToProcess: 0
   inputItems: []
   outputItems:
-  - {fileID: 6814745497331756681, guid: 156abdf2a80095640b14604d15a266e0, type: 3}
+  - {fileID: 2691526863041818778, guid: 4e7dbcebf6853e444a9ac74b0b4a8af6, type: 3}
   inputItemCount: 
   outputItemCount: 01000000

@@ -1,8 +1,9 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <ui:Template name="OptionsBar" src="project://database/Assets/UI/UXML/OptionsBar.uxml?fileID=9197481963319205126&amp;guid=66bf81cc8b4df37448aab5f34ebc4724&amp;type=3#OptionsBar" />
     <ui:Template name="TrackTooltip" src="project://database/Assets/UI/UXML/TrackTooltip.uxml?fileID=9197481963319205126&amp;guid=14e0bd4b16f0eef438a4b04f5dbbce7e&amp;type=3#TrackTooltip" />
+    <ui:Template name="HowTo" src="project://database/Assets/UI/UXML/HowTo.uxml?fileID=9197481963319205126&amp;guid=fbd9893ca5429e443815cd4d86cd7231&amp;type=3#HowTo" />
     <Style src="project://database/Assets/UI/Uss/CommonStyle.uss?fileID=7433441132597879392&amp;guid=367e58749c3e1e846a7094feb6bf6c7c&amp;type=3#CommonStyle" />
-    <ui:Instance template="OptionsBar" name="OptionsBar" />
+    <ui:Instance template="OptionsBar" name="OptionsBar" style="position: absolute; flex-direction: column; align-items: flex-end; right: 15px; top: 15px;" />
     <ui:VisualElement name="GameBar" style="flex-grow: 1; height: 16%; bottom: 0; position: absolute; align-self: auto; align-items: auto; width: 100%; padding-top: 0; padding-right: 20px; padding-bottom: 15px; padding-left: 20px; left: 3px;">
         <ui:VisualElement name="Board" class="Board" style="flex-grow: 1; width: 100%; height: 40%; flex-direction: row; justify-content: space-between; align-items: center;">
             <ui:VisualElement name="BoardLeft" style="flex-grow: 1; height: 100%; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; align-items: center; flex-direction: row; justify-content: flex-start; align-self: auto; overflow: visible; width: 47.5%;">
@@ -50,4 +51,7 @@
         </ui:VisualElement>
     </ui:VisualElement>
     <ui:Instance template="TrackTooltip" name="TrackTooltip" style="flex-direction: column; justify-content: flex-end; align-items: stretch; align-self: center; margin-top: 52px; position: absolute; top: 5%; visibility: hidden;" />
+    <ui:VisualElement name="HowToOverlay" style="flex-grow: 1; position: relative; align-self: center; justify-content: center; align-items: center; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.89);">
+        <ui:Instance template="HowTo" name="HowTo" />
+    </ui:VisualElement>
 </ui:UXML>

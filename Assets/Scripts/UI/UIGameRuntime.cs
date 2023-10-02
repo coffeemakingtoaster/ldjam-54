@@ -11,6 +11,7 @@ public class UIGameRuntime : MonoBehaviour
     private VisualElement gameUI;
     private VisualElement menuUI;
     private VisualElement trackToolTip;
+    private VisualElement tutorialPanel;
     private Button buttonCuttingBoard;
     private Button buttonPlate;
     private Button buttonPan;
@@ -24,6 +25,7 @@ public class UIGameRuntime : MonoBehaviour
     private Button buttonSettings;
     private Button buttonExit;
     private Button buttonHowTo;
+    private Button buttonHowToClose;
     private Label cash;
 
     private GameObject PlacementSystem;
@@ -46,9 +48,11 @@ public class UIGameRuntime : MonoBehaviour
         deleteTool = root.Q<Button>("DeleteTool");
 
         trackToolTip = root.Q<VisualElement>("TrackTooltip");
+        tutorialPanel = root.Q<VisualElement>("HowToOverlay");
         buttonExit = root.Q<Button>("ButtonExit");
         buttonSettings = root.Q<Button>("ButtonSettings");
         buttonHowTo = root.Q<Button>("ButtonHowTo");
+        buttonHowToClose = root.Q<Button>("CloseTutorial");
 
         // -- ASSIGNMENT --
         // Devices
@@ -66,10 +70,13 @@ public class UIGameRuntime : MonoBehaviour
 
         // Tools
         deleteTool.clicked += () => StartDelete();
+        buttonHowTo.clicked += () => OpenTutorial();
+        buttonHowToClose.clicked += () => CloseTutorial();
 
         buttonExit.clicked += ExitApplicationClicked;
 
         trackToolTip.visible = false;
+        tutorialPanel.visible = false;
     }
     
     private void SettingsClicked()
@@ -96,6 +103,16 @@ public class UIGameRuntime : MonoBehaviour
         Debug.Log("StartDelete");
     }
 
+    private void OpenTutorial()
+    {
+        tutorialPanel.visible = true;
+    }
+
+    private void CloseTutorial()
+    {
+        tutorialPanel.visible = false;
+    }
+
     private void ExitApplicationClicked()
     {
         #if UNITY_EDITOR
@@ -105,6 +122,14 @@ public class UIGameRuntime : MonoBehaviour
         Debug.Log("Quitting game..");
 		Application.Quit ();
 #endif
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            trackToolTip.visible = false;
+        }
     }
 
 }

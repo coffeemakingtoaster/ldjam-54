@@ -65,7 +65,7 @@ namespace DefaultNamespace
                 }
                 else if (zoom < -5)
                 {
-                    zoom = 5;
+                    zoom = -5;
                 }
                 
                 camera.fieldOfView -= zoom;

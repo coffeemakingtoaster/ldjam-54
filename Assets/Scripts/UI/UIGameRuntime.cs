@@ -50,8 +50,8 @@ public class UIGameRuntime : MonoBehaviour
 
         deleteTool = root.Q<Button>("DeleteTool");
 
-        placementToolTip = root.Q<VisualElement>("placementTooltip");
-        deletionToolTip = root.Q<VisualElement>("deletionTooltip");
+        placementToolTip = root.Q<VisualElement>("PlacementTooltip");
+        deletionToolTip = root.Q<VisualElement>("DeletionTooltip");
         tutorialPanel = root.Q<VisualElement>("HowToOverlay");
         settingsPanel = root.Q<VisualElement>("SettingsOverlay");
         buttonExit = root.Q<Button>("ButtonExit");

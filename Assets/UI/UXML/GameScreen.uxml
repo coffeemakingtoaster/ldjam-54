@@ -4,6 +4,7 @@
     <ui:Template name="DeleteTooltip" src="project://database/Assets/UI/UXML/DeleteTooltip.uxml?fileID=9197481963319205126&amp;guid=01856809e12d87241b704b935aaf5a49&amp;type=3#DeleteTooltip" />
     <ui:Template name="HowTo" src="project://database/Assets/UI/UXML/HowTo.uxml?fileID=9197481963319205126&amp;guid=fbd9893ca5429e443815cd4d86cd7231&amp;type=3#HowTo" />
     <ui:Template name="SettingsPanel" src="project://database/Assets/UI/UXML/SettingsPanel.uxml?fileID=9197481963319205126&amp;guid=53361747288b7e442a3a98ba31fb34f0&amp;type=3#SettingsPanel" />
+    <ui:Template name="ControlsTooltip" src="project://database/Assets/UI/UXML/ControlsTooltip.uxml?fileID=9197481963319205126&amp;guid=e9eab84a8fbf47a4ca40b315d4ea09c6&amp;type=3#ControlsTooltip" />
     <Style src="project://database/Assets/UI/Uss/CommonStyle.uss?fileID=7433441132597879392&amp;guid=367e58749c3e1e846a7094feb6bf6c7c&amp;type=3#CommonStyle" />
     <ui:Instance template="OptionsBar" name="OptionsBar" style="position: absolute; flex-direction: column; align-items: flex-end; right: 15px; top: 15px;" />
     <ui:VisualElement name="GameBar" style="flex-grow: 1; height: 16%; bottom: 0; position: absolute; align-self: auto; align-items: auto; width: 100%; padding-top: 0; padding-right: 20px; padding-bottom: 15px; padding-left: 20px; left: 3px;">
@@ -65,4 +66,5 @@
     <ui:VisualElement name="SettingsOverlay" style="flex-grow: 1; position: absolute; align-self: center; justify-content: center; align-items: center; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.89); visibility: hidden;">
         <ui:Instance template="SettingsPanel" name="SettingsPanel" />
     </ui:VisualElement>
+    <ui:Instance template="ControlsTooltip" name="ControlsTooltip" style="position: absolute; align-items: stretch; align-self: center; margin-top: 52px; top: 5%; justify-content: flex-end;" />
 </ui:UXML>

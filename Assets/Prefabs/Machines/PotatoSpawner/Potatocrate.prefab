@@ -174,8 +174,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InInventorySize: 0
   OutInventorySize: 10
-  processes: []
-  activeProcess: {fileID: 11400000, guid: ec51760f3f6717f4ba01fabdd892d28b, type: 2}
+  processes:
+  - {fileID: 11400000, guid: ec51760f3f6717f4ba01fabdd892d28b, type: 2}
   InInventoryPoint: {fileID: 3768761209805250803}
   OutInventoryPoint: {fileID: 3637090659833489785}
   FoodPoint: {fileID: 771911778955457947}
@@ -183,6 +183,7 @@ MonoBehaviour:
   isDisplaying: 0
   CurrentInInvSize: 0
   CurrentOutInvSize: 0
+  clip: {fileID: 0}
 --- !u!95 &-6671644544488762885
 Animator:
   serializedVersion: 5

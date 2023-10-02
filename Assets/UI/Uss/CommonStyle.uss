@@ -1,0 +1,39 @@
+Button.gameui:hover {
+    border-width: 7px;
+    border-color: #F2E887;
+    border-radius: 10px;
+}
+
+Button.gameui {
+    border-radius: 10px;
+    border-width: 3px;
+    border-color: rgba(242, 232, 135, 0.9);
+}
+
+VisualElement.Board {
+    border-radius: 10px;
+    background-color: rgba(72, 62, 63, 0.97);
+}
+
+Button.mainmenu {
+    border-radius: 10px;
+    border-width: 0px;
+    background-color: #483E3F;
+    color: #F2E887;
+}
+
+Button.mainmenu:hover {
+    border-width: 7px;
+    border-radius: 10px;
+    border-color: #F2E887;
+}
+
+Button.itemtooltip {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+Button.itemtooltip:hover {
+    background-color: rgba(25, 25, 25, 0.5);
+    border-radius: 5px;
+}
+

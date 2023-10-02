@@ -18,25 +18,25 @@ MonoBehaviour:
     <Size>k__BackingField: {x: 1, y: 1}
     <Prefab>k__BackingField: {fileID: 4398005425921824447, guid: f7c4a61f8598cc24abb44c8f53632da7,
       type: 3}
-    <Price>k__BackingField: 10
+    <Price>k__BackingField: 5
   - <Name>k__BackingField: TurnTrack
     <ID>k__BackingField: 1
     <Size>k__BackingField: {x: 1, y: 1}
     <Prefab>k__BackingField: {fileID: 4398005425921824447, guid: d7e0173dcafb6c24aa321973f76e4d72,
       type: 3}
-    <Price>k__BackingField: 10
+    <Price>k__BackingField: 5
   - <Name>k__BackingField: TrackSwitch
     <ID>k__BackingField: 2
     <Size>k__BackingField: {x: 1, y: 1}
     <Prefab>k__BackingField: {fileID: 6130082083863034199, guid: 9ade659ea644eb741a7bffe0f756c0e9,
       type: 3}
-    <Price>k__BackingField: 25
+    <Price>k__BackingField: 10
   - <Name>k__BackingField: CuttingBoard
     <ID>k__BackingField: 3
     <Size>k__BackingField: {x: 2, y: 3}
     <Prefab>k__BackingField: {fileID: 6347542262721816272, guid: 7ecb4e6b77b52ba42bbf6c6e88f0e1ed,
       type: 3}
-    <Price>k__BackingField: 30
+    <Price>k__BackingField: 20
   - <Name>k__BackingField: Pot
     <ID>k__BackingField: 4
     <Size>k__BackingField: {x: 3, y: 3}
@@ -49,3 +49,15 @@ MonoBehaviour:
     <Prefab>k__BackingField: {fileID: 6002153021834175803, guid: 0916b57967ee282419a45ce5bc45de34,
       type: 3}
     <Price>k__BackingField: 30
+  - <Name>k__BackingField: Grinder
+    <ID>k__BackingField: 6
+    <Size>k__BackingField: {x: 5, y: 3}
+    <Prefab>k__BackingField: {fileID: 6002153021834175803, guid: 8bc77897d4cc9a745879ddd3fd0ce6f2,
+      type: 3}
+    <Price>k__BackingField: 50
+  - <Name>k__BackingField: Frier
+    <ID>k__BackingField: 7
+    <Size>k__BackingField: {x: 6, y: 5}
+    <Prefab>k__BackingField: {fileID: 5140384489314588413, guid: 60d35362f4f678b42aabf5b821b6b2bb,
+      type: 3}
+    <Price>k__BackingField: 100

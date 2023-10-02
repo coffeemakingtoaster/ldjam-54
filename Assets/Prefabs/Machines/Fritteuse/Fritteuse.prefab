@@ -73,17 +73,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 5b488746dc3d776448435d52b0cddbe8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.198
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5b488746dc3d776448435d52b0cddbe8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.386
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5b488746dc3d776448435d52b0cddbe8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.264
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5b488746dc3d776448435d52b0cddbe8,
         type: 3}
@@ -203,6 +203,7 @@ MonoBehaviour:
   OutInventoryPoint: {fileID: 4069559103726132380}
   FoodPoint: {fileID: 5654590914236943234}
   isProcessing: 0
+  isDisplaying: 0
   CurrentInInvSize: 0
   CurrentOutInvSize: 0
 --- !u!95 &4290282311877416562

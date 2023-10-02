@@ -1,8 +1,15 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <ui:Template name="OptionsBar" src="project://database/Assets/UI/UXML/OptionsBar.uxml?fileID=9197481963319205126&amp;guid=66bf81cc8b4df37448aab5f34ebc4724&amp;type=3#OptionsBar" />
     <ui:Template name="MenuBar" src="project://database/Assets/UI/UXML/MenuBar.uxml?fileID=9197481963319205126&amp;guid=6a1d0538fe194794e8d7339a5704c6b6&amp;type=3#MenuBar" />
-    <ui:VisualElement name="background-cursor" style="flex-grow: 1; cursor: url(&apos;project://database/Assets/UI/Textures/Cursors/Cursor_A.png?fileID=2800000&amp;guid=0fc53ad8e877049c3aef54a3f8a1e01a&amp;type=3#Cursor_A&apos;); width: 100%; height: 100%; position: absolute; background-image: none;" />
+    <ui:Template name="HowTo" src="project://database/Assets/UI/UXML/HowTo.uxml?fileID=9197481963319205126&amp;guid=fbd9893ca5429e443815cd4d86cd7231&amp;type=3#HowTo" />
+    <ui:Template name="SettingsPanel" src="project://database/Assets/UI/UXML/SettingsPanel.uxml?fileID=9197481963319205126&amp;guid=53361747288b7e442a3a98ba31fb34f0&amp;type=3#SettingsPanel" />
     <ui:VisualElement name="Logo" style="background-image: url(&apos;project://database/Assets/UI/Textures/Logo.png?fileID=2800000&amp;guid=d32e7ed547743b84499858b047550995&amp;type=3#Logo&apos;); -unity-background-scale-mode: scale-to-fit; background-color: rgba(0, 0, 0, 0); flex-grow: 1; left: 27px; top: 13px; position: absolute; width: 32%; height: 58%;" />
-    <ui:Instance template="OptionsBar" name="OptionsBar" />
+    <ui:Instance template="OptionsBar" name="OptionsBar" style="position: absolute; top: 15px; right: 15px;" />
     <ui:Instance template="MenuBar" name="MenuBar" style="align-items: center; position: absolute; align-self: center; justify-content: flex-start; bottom: 150px;" />
+    <ui:VisualElement name="HowToOverlay" style="flex-grow: 1; align-self: center; justify-content: center; align-items: center; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.89); visibility: hidden; position: absolute;">
+        <ui:Instance template="HowTo" name="HowTo" />
+    </ui:VisualElement>
+    <ui:VisualElement name="SettingsOverlay" style="flex-grow: 1; position: absolute; align-self: center; justify-content: center; align-items: center; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.89); visibility: hidden;">
+        <ui:Instance template="SettingsPanel" name="SettingsPanel" />
+    </ui:VisualElement>
 </ui:UXML>

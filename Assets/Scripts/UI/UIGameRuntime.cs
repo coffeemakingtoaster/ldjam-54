@@ -10,8 +10,10 @@ public class UIGameRuntime : MonoBehaviour
     private VisualElement root;
     private VisualElement gameUI;
     private VisualElement menuUI;
-    private VisualElement trackToolTip;
+    private VisualElement placementToolTip;
+    private VisualElement deletionToolTip;
     private VisualElement tutorialPanel;
+    private VisualElement settingsPanel;
     private Button buttonCuttingBoard;
     private Button buttonPlate;
     private Button buttonPan;
@@ -26,6 +28,7 @@ public class UIGameRuntime : MonoBehaviour
     private Button buttonExit;
     private Button buttonHowTo;
     private Button buttonHowToClose;
+    private Button buttonSettingsClose;
     private Label cash;
 
     private GameObject PlacementSystem;
@@ -47,60 +50,55 @@ public class UIGameRuntime : MonoBehaviour
 
         deleteTool = root.Q<Button>("DeleteTool");
 
-        trackToolTip = root.Q<VisualElement>("TrackTooltip");
+        placementToolTip = root.Q<VisualElement>("placementTooltip");
+        deletionToolTip = root.Q<VisualElement>("deletionTooltip");
         tutorialPanel = root.Q<VisualElement>("HowToOverlay");
+        settingsPanel = root.Q<VisualElement>("SettingsOverlay");
         buttonExit = root.Q<Button>("ButtonExit");
         buttonSettings = root.Q<Button>("ButtonSettings");
         buttonHowTo = root.Q<Button>("ButtonHowTo");
         buttonHowToClose = root.Q<Button>("CloseTutorial");
+        buttonSettingsClose = root.Q<Button>("CloseSettings");
 
         // -- ASSIGNMENT --
         // Devices
-        buttonCuttingBoard.clicked += () => StartPlacement(2);
-        buttonPlate.clicked += () => StartPlacement(2);
+        buttonCuttingBoard.clicked += () => StartPlacement(0);
+        buttonPlate.clicked += () => StartPlacement(1);
         buttonPan.clicked += () => StartPlacement(2);
-        buttonPot.clicked += () => StartPlacement(2);
-        buttonFry.clicked += () => StartPlacement(2);
-        buttonMeat.clicked += () => StartPlacement(2);
+        buttonPot.clicked += () => StartPlacement(3);
+        buttonFry.clicked += () => StartPlacement(4);
+        buttonMeat.clicked += () => StartPlacement(5);
 
         // Tracks
-        trackStraight.clicked += () => TrackClicked(1);
-        trackTurn.clicked += () => TrackClicked(4);
-        trackSwitch.clicked += () => TrackClicked(3);
+        trackStraight.clicked += () => StartPlacement(6);
+        trackTurn.clicked += () => StartPlacement(7);
+        trackSwitch.clicked += () => StartPlacement(8);
 
         // Tools
         deleteTool.clicked += () => StartDelete();
         buttonHowTo.clicked += () => OpenTutorial();
-        buttonHowToClose.clicked += () => CloseTutorial();
+        buttonHowToClose.clicked += () => ClosePanel();
+        buttonSettings.clicked += () => OpenSettings();
+        buttonSettingsClose.clicked += () => ClosePanel();
 
-        buttonExit.clicked += ExitApplicationClicked;
+        buttonExit.clicked += EndGameClicked;
 
-        trackToolTip.visible = false;
+        deletionToolTip.visible = false;
+        placementToolTip.visible = false;
         tutorialPanel.visible = false;
-    }
-    
-    private void SettingsClicked()
-    {
-        //buttonWrapper.Clear();
-    }
-
-    private void TrackClicked(int i)
-    {
-        trackToolTip.visible = true;
-        ps.StartPlacement(i);
-        Debug.Log("Track " + i);
     }
 
     private void StartPlacement(int i)
     {
+        placementToolTip.visible = true;
         ps.StartPlacement(i);
         Debug.Log("StartPlacement " + i);
     }
 
     private void StartDelete()
     {
+        deletionToolTip.visible = true;
         ps.StartDelete();
-        Debug.Log("StartDelete");
     }
 
     private void OpenTutorial()
@@ -108,27 +106,29 @@ public class UIGameRuntime : MonoBehaviour
         tutorialPanel.visible = true;
     }
 
-    private void CloseTutorial()
+    private void OpenSettings()
     {
-        tutorialPanel.visible = false;
+        settingsPanel.visible = true;
     }
 
-    private void ExitApplicationClicked()
+    private void ClosePanel()
     {
-        #if UNITY_EDITOR
-        Debug.Log("Quitting game..");
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Debug.Log("Quitting game..");
-		Application.Quit ();
-#endif
+        placementToolTip.visible = false;
+        deletionToolTip.visible = false;
+        tutorialPanel.visible = false;
+        settingsPanel.visible = false;
+    }
+
+    private void EndGameClicked()
+    {
+        SceneManager.LoadScene("GameMenu");
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            trackToolTip.visible = false;
+            ClosePanel();
         }
     }
 

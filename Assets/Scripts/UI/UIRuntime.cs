@@ -11,38 +11,66 @@ public class UIRuntime : MonoBehaviour
     private VisualElement root;
     private VisualElement gameUI;
     private VisualElement menuUI;
+    private VisualElement tutorialPanel;
+    private VisualElement settingsPanel;
+    private Button buttonPlay;
+    private Button buttonExit;
     private Button buttonSettings;
-    private VisualElement buttonWrapper;
-    private GameObject PlacementSystem;
+    private Button buttonSettingsClose;
+    private Button buttonHowTo;
+    private Button buttonHowToClose;
     private void Awake()
     {
         root = GetComponent<UIDocument>().rootVisualElement;
 
-        //root.Q<Button>("ButtonStart");
-
-        Button buttonPlay = root.Q<Button>("ButtonStart");
-        Button buttonExit = root.Q<Button>("ButtonExit");
+        buttonPlay = root.Q<Button>("ButtonStart");
+        buttonHowTo = root.Q<Button>("ButtonHowTo");
+        buttonHowToClose = root.Q<Button>("CloseTutorial");
         buttonSettings = root.Q<Button>("ButtonSettings");
-        buttonWrapper = root.Q<VisualElement>("MenuBar");
-        //gameUI = root.Q<VisualElement>("MenuBar");
-        Button buttonHowTo = root.Q<Button>("ButtonHowTo");
+        buttonSettingsClose = root.Q<Button>("CloseSettings");
+        buttonExit = root.Q<Button>("ButtonExit");
+
+        settingsPanel = root.Q<VisualElement>("SettingsOverlay");
+        tutorialPanel = root.Q<VisualElement>("HowToOverlay");
 
         buttonPlay.clicked += PlayGame;
         buttonExit.clicked += ExitApplicationClicked;
-        buttonSettings.clicked += () => ps.StartPlacement(0);
+        buttonHowTo.clicked += () => OpenTutorial();
+        buttonHowToClose.clicked += () => ClosePanel();
+        buttonSettings.clicked += () => OpenSettings();
+        buttonSettingsClose.clicked += () => ClosePanel();
 
-
-        //buttonSettings.clicked += SettingsClicked;
+        tutorialPanel.visible = false;
+        settingsPanel.visible = false;
     }
 
     private void PlayGame()
     {
         SceneManager.LoadScene("MainMenu");
     }
-    
-    private void SettingsClicked()
+
+    private void OpenTutorial()
     {
-        buttonWrapper.Clear();
+        tutorialPanel.visible = true;
+    }
+
+    private void OpenSettings()
+    {
+        settingsPanel.visible = true;
+    }
+
+    private void ClosePanel()
+    {
+        tutorialPanel.visible = false;
+        settingsPanel.visible = false;
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ClosePanel();
+        }
     }
 
     private void ExitApplicationClicked()

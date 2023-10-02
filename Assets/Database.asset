@@ -13,23 +13,33 @@ MonoBehaviour:
   m_Name: Database
   m_EditorClassIdentifier: 
   objectsData:
-  - <Name>k__BackingField: Void
+  - <Name>k__BackingField: Track
     <ID>k__BackingField: 0
-    <Size>k__BackingField: {x: 10, y: 10}
-    <Prefab>k__BackingField: {fileID: 1315869784183618470, guid: bb450b2b1c2e6e94881a78db0ae62e43,
-      type: 3}
-  - <Name>k__BackingField: CuttingBoard
-    <ID>k__BackingField: 1
-    <Size>k__BackingField: {x: 2, y: 3}
-    <Prefab>k__BackingField: {fileID: 6347542262721816272, guid: 7ecb4e6b77b52ba42bbf6c6e88f0e1ed,
+    <Size>k__BackingField: {x: 1, y: 1}
+    <Prefab>k__BackingField: {fileID: 4398005425921824447, guid: f7c4a61f8598cc24abb44c8f53632da7,
       type: 3}
   - <Name>k__BackingField: TurnTrack
-    <ID>k__BackingField: 3
+    <ID>k__BackingField: 1
     <Size>k__BackingField: {x: 1, y: 1}
     <Prefab>k__BackingField: {fileID: 4398005425921824447, guid: d7e0173dcafb6c24aa321973f76e4d72,
       type: 3}
   - <Name>k__BackingField: TrackSwitch
-    <ID>k__BackingField: 4
+    <ID>k__BackingField: 2
     <Size>k__BackingField: {x: 1, y: 1}
     <Prefab>k__BackingField: {fileID: 6130082083863034199, guid: 9ade659ea644eb741a7bffe0f756c0e9,
+      type: 3}
+  - <Name>k__BackingField: CuttingBoard
+    <ID>k__BackingField: 3
+    <Size>k__BackingField: {x: 2, y: 3}
+    <Prefab>k__BackingField: {fileID: 6347542262721816272, guid: 7ecb4e6b77b52ba42bbf6c6e88f0e1ed,
+      type: 3}
+  - <Name>k__BackingField: Pot
+    <ID>k__BackingField: 4
+    <Size>k__BackingField: {x: 3, y: 3}
+    <Prefab>k__BackingField: {fileID: 2699371076935722430, guid: 17d3b3d50e68807489880198a8aad509,
+      type: 3}
+  - <Name>k__BackingField: Pan
+    <ID>k__BackingField: 5
+    <Size>k__BackingField: {x: 3, y: 3}
+    <Prefab>k__BackingField: {fileID: 6002153021834175803, guid: 0916b57967ee282419a45ce5bc45de34,
       type: 3}

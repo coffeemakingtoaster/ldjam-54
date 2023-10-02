@@ -147,7 +147,9 @@ MonoBehaviour:
   BaseWayPoint: {fileID: 1408344474195321062}
   GRID_SIZE: 0.1
   ConnectedTracks: []
+  ConnectedSwitches: []
   MaxConnectedTracks: 2
+  isInSwitch: 0
 --- !u!114 &7374338190292454306
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4631307410087266509}
   - component: {fileID: 8960255082795480973}
   - component: {fileID: 3427399301329329694}
+  - component: {fileID: 6107452617005410433}
   m_Layer: 0
   m_Name: Wagon
   m_TagString: Untagged
@@ -75,7 +76,7 @@ CapsuleCollider:
   m_Radius: 0.023754008
   m_Height: 0.0600812
   m_Direction: 1
-  m_Center: {x: 0.05, y: 0.025, z: 0.05}
+  m_Center: {x: 0, y: 0.025, z: 0}
 --- !u!54 &3427399301329329694
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -86,7 +87,7 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 0.0000001
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -99,10 +100,31 @@ Rigidbody:
   m_ImplicitCom: 0
   m_ImplicitTensor: 0
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &6107452617005410433
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477345004765215093}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.036605924, y: 0.03984594, z: 0.05033637}
+  m_Center: {x: 0.00031499192, y: 0.03097651, z: -0.00745932}
 --- !u!1 &2961252615624635585
 GameObject:
   m_ObjectHideFlags: 0

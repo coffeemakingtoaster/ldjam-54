@@ -34,6 +34,8 @@ namespace DefaultNamespace
             Input.GetAxis("Vertical") * MovementSpeed * Time.deltaTime );
             Vector3 fixedDirection = ApplyPerspective(direction);
             float zoom = Input.mouseScrollDelta.y * ZoomSpeed * Time.deltaTime;
+            
+            // Rotate
             if (Input.GetKey(KeyCode.Q))
             {
                 rotation -= TurnSpeed * Time.deltaTime;
@@ -57,6 +59,15 @@ namespace DefaultNamespace
             // Zoom
             if ((zoom > 0 && camera.fieldOfView > MaxZoom) || (zoom < 0 && camera.fieldOfView < MinZoom) )
             {
+                if (zoom > 5)
+                {
+                    zoom = 5;
+                }
+                else if (zoom < -5)
+                {
+                    zoom = 5;
+                }
+                
                 camera.fieldOfView -= zoom;
 
             }

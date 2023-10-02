@@ -28,6 +28,8 @@ public class Machine : MonoBehaviour
     public void Update()
     {
         activeProcess.process(ref InInventory, ref OutInventory, ref OutInventorySize, gameObject, ref CurrentInInvSize, ref CurrentOutInvSize, ref isProcessing);
+
+        // activeprocess.output.firstitemfromdictionary
     }
 
     public void endAnim()

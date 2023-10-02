@@ -60,16 +60,16 @@ public class UIGameRuntime : MonoBehaviour
 
         // -- ASSIGNMENT --
         // Devices
-        buttonCuttingBoard.clicked += () => StartPlacement(0);
-        buttonPan.clicked += () => StartPlacement(2);
-        buttonPot.clicked += () => StartPlacement(3);
+        buttonCuttingBoard.clicked += () => StartPlacement(3);
+        buttonPan.clicked += () => StartPlacement(5);
+        buttonPot.clicked += () => StartPlacement(4);
         buttonFry.clicked += () => StartPlacement(4);
         buttonMeat.clicked += () => StartPlacement(5);
 
         // Tracks
-        trackStraight.clicked += () => StartPlacement(6);
-        trackTurn.clicked += () => StartPlacement(7);
-        trackSwitch.clicked += () => StartPlacement(8);
+        trackStraight.clicked += () => StartPlacement(0);
+        trackTurn.clicked += () => StartPlacement(1);
+        trackSwitch.clicked += () => StartPlacement(2);
 
         // Tools
         deleteTool.clicked += () => StartDelete();
@@ -87,6 +87,7 @@ public class UIGameRuntime : MonoBehaviour
 
     private void StartPlacement(int i)
     {
+        deletionToolTip.visible = false;
         placementToolTip.visible = true;
         ps.StartPlacement(i);
         Debug.Log("StartPlacement " + i);
@@ -94,6 +95,7 @@ public class UIGameRuntime : MonoBehaviour
 
     private void StartDelete()
     {
+        placementToolTip.visible = false;
         deletionToolTip.visible = true;
         ps.StartDelete();
     }

@@ -25,7 +25,7 @@ public class Process : ScriptableObject
 
     public void awake()
     {
-
+        
         inputCount = 0;
         outputCount = 0;
 
@@ -45,9 +45,7 @@ public class Process : ScriptableObject
     }
     public void process(ref Dictionary<GameObject, int> InInventory, ref Dictionary<GameObject, int> OutInventory, ref int OutInventorySize, GameObject machine, ref int currentInInvSize, ref int currentOutInvSize, ref bool isProcessing)
     {
-        Debug.Log(currentOutInvSize);
-        Debug.Log(OutInventorySize);
-        Debug.Log(outputCount);
+        
         //change to correct
         if (currentOutInvSize <= (OutInventorySize - outputCount) && !this.isProcessing && this.gotInputs(InInventory))
         {

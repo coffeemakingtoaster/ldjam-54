@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3092393951854746913}
   m_Layer: 8
-  m_Name: EntryPoint
+  m_Name: WayPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8518163570272434519}
   m_Layer: 8
-  m_Name: ExitPoint
+  m_Name: WayPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -143,15 +143,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d3d10fcbb5c14342a703b994985007f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextTrainTrack: {fileID: 0}
-  previousTrainTrack: {fileID: 0}
-  entryPoint: {fileID: 1408344474195321062}
-  exitPoint: {fileID: 3107910977542908887}
-  rotatePoint: {fileID: 0}
-  isCurve: 0
+  WayPoints: []
+  BaseWayPoint: {fileID: 1408344474195321062}
   GRID_SIZE: 0.1
-  flipsDirection: 0
-  isInSwitch: 1
+  ConnectedTracks: []
+  MaxConnectedTracks: 2
 --- !u!114 &7374338190292454306
 MonoBehaviour:
   m_ObjectHideFlags: 0

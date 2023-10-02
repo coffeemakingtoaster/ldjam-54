@@ -10,7 +10,7 @@ public class TrackSwitch : MonoBehaviour
 
     public GameObject[] entryPoints;
 
-
+ /*
     void Start()
     {
         Debug.LogWarning("Start");

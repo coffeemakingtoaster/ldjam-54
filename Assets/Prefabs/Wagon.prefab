@@ -36,6 +36,7 @@ Transform:
   - {fileID: 3635699211977199663}
   - {fileID: 5443806163227621586}
   - {fileID: 8638576838985437272}
+  - {fileID: 7003122840464578128}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4631307410087266509
@@ -53,6 +54,10 @@ MonoBehaviour:
   PreviousBallCoupling: {fileID: 0}
   OwnFrontBallCoupling: {fileID: 188053549241235272}
   payload: {fileID: 0}
+  payloadDisplay: {fileID: 0}
+  hasSpawnProtection: 1
+  foodPoint: {fileID: 3615070054831489158}
+  Sample: {fileID: 6814745497331756681, guid: 156abdf2a80095640b14604d15a266e0, type: 3}
   SPEED: 0.05
 --- !u!136 &8960255082795480973
 CapsuleCollider:
@@ -169,6 +174,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd0ea9134e13c134c871a3d36d340927, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &3615070054831489158
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7003122840464578128}
+  m_Layer: 0
+  m_Name: CargoPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7003122840464578128
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3615070054831489158}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0002, y: 0.0318, z: -0.0053}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5152497191046958958}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5105990915773558921
 GameObject:
   m_ObjectHideFlags: 0

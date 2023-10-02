@@ -14,7 +14,9 @@ public class TrainWagon : MonoBehaviour
 
     private Vector3 previousPosition;
 
-     public bool hasSpawnProtection = true;
+    public bool hasSpawnProtection = true;
+
+    public GameObject foodPoint;
 
     public float SPEED = 0.05f;
     void Start()
@@ -62,6 +64,7 @@ public class TrainWagon : MonoBehaviour
         {
             GameObject outgoingCargo = this.payload;
             this.payload = null;
+            Destroy(payload);
             return outgoingCargo;
         }
         return null;
@@ -71,6 +74,15 @@ public class TrainWagon : MonoBehaviour
     {
         if (this.payload == null)
         {
+            payloadDisplay = Instantiate(payload, transform);
+            payloadDisplay.transform.parent = foodPoint.transform;
+            float scale = GetScale(payload.name);
+            payloadDisplay.transform.localScale = new Vector3(
+                payloadDisplay.transform.localScale.x * scale,
+                payloadDisplay.transform.localScale.y * scale,
+                payloadDisplay.transform.localScale.z * scale
+            );
+
             this.payload = payload;
         }
         return false;
@@ -78,10 +90,12 @@ public class TrainWagon : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
-        if (hasSpawnProtection){
+        if (hasSpawnProtection)
+        {
             return;
         }
-        if (collision.gameObject.Equals(this)){
+        if (collision.gameObject.Equals(this))
+        {
             return;
         }
         TrainWagon trainWagon = collision.gameObject.GetComponent<TrainWagon>();
@@ -90,5 +104,14 @@ public class TrainWagon : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
+
+    private float GetScale(string name)
+    {
+        if (name == "Onion" || name == "Potato" || name == "Tomato" || name == "ChoppedOnion" || name == "PotatoSliced")
+        {
+            return 0.8f;
+        }
+        return 0.1f;
     }
 }

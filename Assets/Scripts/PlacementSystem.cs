@@ -98,7 +98,7 @@ public class PlacementSystem : MonoBehaviour
         }
         Vector3 mousePosition = inputManager.GetSelectedMapPosition();
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
-        //print(gridPosition);
+        
 
         calcSize();
 
@@ -186,7 +186,7 @@ public class PlacementSystem : MonoBehaviour
 
         Vector3 mousePosition = inputManager.GetSelectedMapPosition();
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
-        Debug.Log(gridPosition);
+        //Debug.Log(gridPosition);
 
         
         if (Input.GetKeyDown(turnRight))

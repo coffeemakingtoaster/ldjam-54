@@ -25,7 +25,7 @@ public class TrainTrack : MonoBehaviour
         {
             if (child.name == "WayPoint" && child.gameObject != BaseWayPoint)
             {
-                Debug.Log("Waypoint found");
+                //Debug.Log("Waypoint found");
                 WayPoints.Add(child.transform.position);
             }
         }
@@ -73,7 +73,7 @@ public class TrainTrack : MonoBehaviour
         {
             if (System.Object.Equals(this, externalTrainTrack))
             {
-                Debug.Log("Self");
+                //Debug.Log("Self");
                 continue;
             }
 
@@ -84,7 +84,7 @@ public class TrainTrack : MonoBehaviour
 
             if (externalTrainTrack.gameObject.layer == LayerMask.NameToLayer("Ignore Raycast"))
             {
-                Debug.Log("Visualization");
+                //Debug.Log("Visualization");
                 continue;
             }
 
@@ -92,7 +92,7 @@ public class TrainTrack : MonoBehaviour
             // This occurs when the item is flipped 180 degrees in comparison to this one 
             if (Vector3.Distance(transform.position, externalTrainTrack.transform.position) > 0.23f)
             {
-                Debug.Log("Not adjacent");
+                //Debug.Log("Not adjacent");
                 continue;
             }
 
@@ -113,7 +113,7 @@ public class TrainTrack : MonoBehaviour
                 externalTrainTrack.AddTrackToConnected(this);
             }
         }
-        Debug.Log("Now connected to " + ConnectedTracks.Count);
+        //Debug.Log("Now connected to " + ConnectedTracks.Count);
 
         TrackSwitch[] trackSwitches = FindObjectsOfType<TrackSwitch>();
         foreach (TrackSwitch externalTrackSwitch in trackSwitches)
@@ -121,7 +121,7 @@ public class TrainTrack : MonoBehaviour
 
             if (externalTrackSwitch.gameObject.layer == LayerMask.NameToLayer("Ignore Raycast"))
             {
-                Debug.Log("Visualization");
+                //Debug.Log("Visualization");
                 continue;
             }
 
@@ -129,7 +129,7 @@ public class TrainTrack : MonoBehaviour
             // This occurs when the item is flipped 180 degrees in comparison to this one 
             if (Vector3.Distance(transform.position, externalTrackSwitch.transform.position) > 0.23f)
             {
-                Debug.Log("Not adjacent");
+                //Debug.Log("Not adjacent");
                 continue;
             }
 

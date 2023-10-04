@@ -24,7 +24,7 @@ public class Bridge : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Renderer component not found!");
+            ////Debug.LogError("Renderer component not found!");
         }
         
     }
@@ -37,7 +37,7 @@ public class Bridge : MonoBehaviour
     private void ChangeMaterial()
     {
         funds = gameStats.getCurrentFunds();
-        Debug.Log(funds);
+        ////Debug.Log(funds);
         if (funds < 300)
         {
             return;
@@ -50,8 +50,8 @@ public class Bridge : MonoBehaviour
             {
                 if (34-i >= start.x && 34-i <= end.x && 49-j >= start.y && 49-j <= end.y)
                 {
-                    Debug.Log(i);
-                    Debug.Log(j);
+                    ////Debug.Log(i);
+                    ////Debug.Log(j);
                     MapArray.map[i, j] = 1;
                 }
                 
@@ -65,7 +65,7 @@ public class Bridge : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Renderer or new material is not set!");
+            ////Debug.LogError("Renderer or new material is not set!");
         }
     }
 
@@ -80,7 +80,7 @@ public class Bridge : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Renderer component not found!");
+            //Debug.LogError("Renderer component not found!");
         }
     }
 }

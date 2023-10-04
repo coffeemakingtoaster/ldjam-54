@@ -57,7 +57,6 @@ MonoBehaviour:
   payloadDisplay: {fileID: 0}
   hasSpawnProtection: 1
   foodPoint: {fileID: 3615070054831489158}
-  Sample: {fileID: 6814745497331756681, guid: 156abdf2a80095640b14604d15a266e0, type: 3}
   SPEED: 0.05
 --- !u!136 &8960255082795480973
 CapsuleCollider:
@@ -199,7 +198,7 @@ Transform:
   m_GameObject: {fileID: 3615070054831489158}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0002, y: 0.0318, z: -0.0053}
+  m_LocalPosition: {x: -0.0002, y: 0.0478, z: -0.0053}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -54,7 +54,7 @@ public class GridData
             }
                 if (placedObjects.ContainsKey(pos))
             {
-                //Debug.Log("not here");
+                ////Debug.Log("not here");
                 return false;
             }
         }
@@ -63,10 +63,10 @@ public class GridData
 
     public void RemoveObjectAtGridPosition(Vector3Int gridPosition,Vector2Int size)
     {
-        //Debug.Log(gridPosition);
-        //Debug.Log(size);
+        ////Debug.Log(gridPosition);
+        ////Debug.Log(size);
         List<Vector3Int> positionToOccupy = CalculatePositions(gridPosition, size);
-        //Debug.Log(placedObjects.Count);
+        ////Debug.Log(placedObjects.Count);
         foreach (var position in positionToOccupy)
         {
             

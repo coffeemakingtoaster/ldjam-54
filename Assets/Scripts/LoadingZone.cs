@@ -34,16 +34,16 @@ public class LoadingZone : MonoBehaviour
             }
             machine.AddItemInToInventory(retrievedPayload);
         } else {
-            Debug.LogWarning("Getting from out");
+            //Debug.LogWarning("Getting from out");
             if (!machine.HasOutInventoryContents()){
                 return;
             }
             if (wagon.payload != null){
                 return;
             }
-            Debug.Log("Adding item to wagon");
+            //Debug.Log("Adding item to wagon");
             GameObject item = machine.GetItemFromOutIventory();
-            Debug.LogWarning("Adding item "+item.name);
+            //Debug.LogWarning("Adding item "+item.name);
             wagon.TryToAddPayload(item);
         }
     }

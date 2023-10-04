@@ -20,7 +20,7 @@ public class GameStats : MonoBehaviour
 
     public void addFunds(int amount){
         currentMoney += amount;
-        Debug.Log("Now at "+ currentMoney.ToString());
+        //Debug.Log("Now at "+ currentMoney.ToString());
     }
 
     public int getCurrentFunds()
@@ -30,6 +30,6 @@ public class GameStats : MonoBehaviour
 
     public void spendFunds(int amount){
         currentMoney -= amount;
-        Debug.Log("Now at "+ currentMoney.ToString());
+        //Debug.Log("Now at "+ currentMoney.ToString());
     }
 }

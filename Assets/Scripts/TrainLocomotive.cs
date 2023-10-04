@@ -27,7 +27,7 @@ public class TrainLocomotive : MonoBehaviour
         //  Current track was just set
         if (currentTrainTrack != null && unvisitedWaypoints.Count == 0 && visitedWaypoints.Count == 0)
         {
-            Debug.Log("Setting waypoints");
+            //Debug.Log("Setting waypoints");
             SetWaypointsFromCurrentTrack();
         }
 
@@ -49,7 +49,7 @@ public class TrainLocomotive : MonoBehaviour
             // Therefore => Need new track
             if (unvisitedWaypoints.Count == 0)
             {
-                Debug.Log("Finding next");
+                //Debug.Log("Finding next");
                 SetNextTrainTrack();
             }
         }
@@ -76,7 +76,7 @@ public class TrainLocomotive : MonoBehaviour
         float endDistance = Vector3.Distance(transform.position, currentTrainTrack.WayPoints.Last());
         visitedWaypoints = new List<Vector3>();
         unvisitedWaypoints = new List<Vector3>(currentTrainTrack.WayPoints);
-        //Debug.Log("Startdistance: "+startDistance.ToString() + " Enddistance: " + endDistance.ToString());
+        ////Debug.Log("Startdistance: "+startDistance.ToString() + " Enddistance: " + endDistance.ToString());
         // start is closer => no reverse
         if (startDistance > endDistance)
         {
@@ -99,13 +99,13 @@ public class TrainLocomotive : MonoBehaviour
         foreach(TrackSwitch trackSwitch in currentTrainTrack.ConnectedSwitches){
             trackSwitch.TryToFindAdjacent();
             validTracks.Add(trackSwitch.getClosestActiveTrainTrack(transform.position));
-            Debug.Log(trackSwitch.getClosestActiveTrainTrack(transform.position));
+            ////Debug.Log(trackSwitch.getClosestActiveTrainTrack(transform.position));
         }
 
 
         foreach (TrainTrack possibleTrainTrack in validTracks)
         {
-            Debug.Log(possibleTrainTrack.transform.gameObject.name);
+            ////Debug.Log(possibleTrainTrack.transform.gameObject.name);
             // This would just create a loop
             if (possibleTrainTrack.Equals(currentTrainTrack) || possibleTrainTrack.Equals(previousTrainTrack))
             {
@@ -125,12 +125,12 @@ public class TrainLocomotive : MonoBehaviour
 
             float startDistance = Vector3.Distance(transform.position, possibleTrainTrack.WayPoints[0]);
             float endDistance = Vector3.Distance(transform.position, possibleTrainTrack.WayPoints.Last());
-            Debug.Log("CurrentPosition: " + transform.position);
-            Debug.Log("Startdistance: " + startDistance.ToString() + " Enddistance: " + endDistance.ToString());
+            ////Debug.Log("CurrentPosition: " + transform.position);
+            ////Debug.Log("Startdistance: " + startDistance.ToString() + " Enddistance: " + endDistance.ToString());
             // Shortest distance to first waypoint of track            
             if (startDistance < shortestDistance)
             {
-                Debug.Log("Start");
+                //Debug.Log("Start");
                 shortestDistance = startDistance;
                 closestTrainTrack = possibleTrainTrack;
                 futureWaypoints = new List<Vector3>(possibleTrainTrack.WayPoints);
@@ -140,7 +140,7 @@ public class TrainLocomotive : MonoBehaviour
             // Dont do this on one way tracks
             if (endDistance < shortestDistance)
             {
-                Debug.Log("End");
+                //Debug.Log("End");
                 shortestDistance = endDistance;
                 closestTrainTrack = possibleTrainTrack;
                 futureWaypoints = new List<Vector3>(possibleTrainTrack.WayPoints);
@@ -150,7 +150,7 @@ public class TrainLocomotive : MonoBehaviour
 
         if (closestTrainTrack == null)
         {
-            Debug.LogWarning("No valid next track for train");
+            //Debug.LogWarning("No valid next track for train");
             return;
         }
         previousTrainTrack = currentTrainTrack;
@@ -170,7 +170,7 @@ public class TrainLocomotive : MonoBehaviour
         if (collision.gameObject.Equals(this)){
             return;
         }
-        Debug.Log("Collision");
+        //Debug.Log("Collision");
         TrainWagon trainWagon = collision.gameObject.GetComponent<TrainWagon>();
         TrainLocomotive trainLocomotive = collision.gameObject.GetComponent<TrainLocomotive>();
         if (trainWagon != null || trainLocomotive != null){

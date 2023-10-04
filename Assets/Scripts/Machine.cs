@@ -48,12 +48,12 @@ public class Machine : MonoBehaviour
             }
         }
         activeProcess.process(ref InInventory, ref OutInventory, ref OutInventorySize, gameObject, ref CurrentInInvSize, ref CurrentOutInvSize, ref isProcessing);
-        //Debug.Log(activeProcess.inputItems[0]);
+        ////Debug.Log(activeProcess.inputItems[0]);
         if (isProcessing && activeProcess.inputItems.Length > 0  && !isDisplaying)
         {
             Debug.Log("Instantiating");
-            audioSource.Play();
-            display = Instantiate(activeProcess.inputItems[0], gameObject.transform.position+FoodPoint.transform.localPosition, Quaternion.identity);
+            //audioSource.Play();
+            display = Instantiate(activeProcess.inputItems[0], gameObject.transform.position+FoodPoint.transform.position, Quaternion.identity);
             isDisplaying = true;
         }
     }
@@ -62,11 +62,11 @@ public class Machine : MonoBehaviour
     {
         isProcessing = false;
         isDisplaying = false;
-        //Debug.Log("Endanim");
+        Debug.Log("Endanim");
         Destroy(display);
         activeProcess.finishProcess(ref InInventory, ref OutInventory, ref CurrentOutInvSize);
         activeProcess = null;
-        audioSource.Stop();
+        //audioSource.Stop();
     }
 
     public void AddItemInToInventory(GameObject item)
@@ -106,7 +106,7 @@ public class Machine : MonoBehaviour
 
     public bool HasOutInventoryContents()
     {
-        Debug.Log("Checking out inventory");
+        //Debug.Log("Checking out inventory");
         return this.CurrentOutInvSize > 0;
     }
 

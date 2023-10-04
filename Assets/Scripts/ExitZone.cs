@@ -21,7 +21,7 @@ public class ExitZone : MonoBehaviour
         }
 
         if (locomotive != null){
-            Debug.LogWarning("teleporting");
+            //Debug.LogWarning("teleporting");
             locomotive.transform.position = transform.position;
         }
         if (wagon != null){

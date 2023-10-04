@@ -41,7 +41,7 @@ public class Process : ScriptableObject
             Output.Add(outputItems[i], outputItemCount[i]);
             outputCount += outputItemCount[i];
         }
-        Debug.Log(outputCount);
+        //Debug.Log(outputCount);
     }
     public void process(ref Dictionary<GameObject, int> InInventory, ref Dictionary<GameObject, int> OutInventory, ref int OutInventorySize, GameObject machine, ref int currentInInvSize, ref int currentOutInvSize, ref bool isProcessing)
     {
@@ -50,7 +50,7 @@ public class Process : ScriptableObject
         if (currentOutInvSize <= (OutInventorySize - outputCount) && !this.isProcessing && this.gotInputs(InInventory))
         {
             
-            //Debug.Log(gotInputs(InInventory));
+            ////Debug.Log(gotInputs(InInventory));
             animator = machine.GetComponent<Animator>();
 
             isProcessing = true;
@@ -73,13 +73,13 @@ public class Process : ScriptableObject
             // A needed item does not exist
             if (!InInventory.ContainsKey(key))
             {
-                //Debug.LogWarning("Does not have key: "+ key);
+                ////Debug.LogWarning("Does not have key: "+ key);
                 return false;
             }
             // An item does not have a sufficient amount
             if (InInventory[key] < Input[key])
             {
-                //Debug.LogWarning("Amount not sufficient: "+ InInventory[key].ToString() + " | "+Input[key].ToString());
+                ////Debug.LogWarning("Amount not sufficient: "+ InInventory[key].ToString() + " | "+Input[key].ToString());
                 return false;
             }
         }

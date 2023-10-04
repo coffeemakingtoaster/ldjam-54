@@ -76,12 +76,13 @@ public class TrainWagon : MonoBehaviour
         {
             payloadDisplay = Instantiate(payload, transform);
             payloadDisplay.transform.parent = foodPoint.transform;
-            float scale = GetScale(payload.name);
+            /*float scale = GetScale(payload.name);
             payloadDisplay.transform.localScale = new Vector3(
                 payloadDisplay.transform.localScale.x * scale,
                 payloadDisplay.transform.localScale.y * scale,
                 payloadDisplay.transform.localScale.z * scale
             );
+            */
 
             this.payload = payload;
         }

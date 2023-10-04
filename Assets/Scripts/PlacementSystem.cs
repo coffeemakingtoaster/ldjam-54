@@ -71,7 +71,7 @@ public class PlacementSystem : MonoBehaviour
         selectedObjectIndex = database.objectsData.FindIndex(data => data.ID == ID);
         if (selectedObjectIndex < 0)
         {
-            Debug.LogError($"No ID found{ID}");
+            //Debug.LogError($"No ID found{ID}");
             return;
         }
         gridVisualization.SetActive(true);
@@ -201,7 +201,7 @@ public class PlacementSystem : MonoBehaviour
 
         Vector3 mousePosition = inputManager.GetSelectedMapPosition();
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
-        Debug.Log(gridPosition);
+        //Debug.Log(gridPosition);
 
         
         if (Input.GetKeyDown(turnRight))

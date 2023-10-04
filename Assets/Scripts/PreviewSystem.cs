@@ -78,7 +78,7 @@ public class PreviewSystem : MonoBehaviour
 
     public void resetRotation(int rotation)
     {
-        Debug.Log(rotation);
+        //Debug.Log(rotation);
         //previewObject.transform.RotateAround(previewObject.transform.Find("Center").transform.position, Vector3.up, -currentPrevRot);
         currentPrevRot = rotation;
     }

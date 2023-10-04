@@ -34,7 +34,7 @@ public class TrackSwitch : MonoBehaviour
 
     private void ToggleActive()
     {
-        Debug.Log("Toggle active");
+        //Debug.Log("Toggle active");
         if (StraightToLeft.transform.gameObject.activeSelf)
         {
             SetActive(StraightToRight);
@@ -65,7 +65,7 @@ public class TrackSwitch : MonoBehaviour
         {
             if (System.Object.Equals(this, externalTrainTrack))
             {
-                Debug.Log("Self");
+                //Debug.Log("Self");
                 continue;
             }
 
@@ -76,7 +76,7 @@ public class TrackSwitch : MonoBehaviour
 
             if (externalTrainTrack.gameObject.layer == LayerMask.NameToLayer("Ignore Raycast"))
             {
-                Debug.Log("Visualization");
+                //Debug.Log("Visualization");
                 continue;
             }
 
@@ -84,7 +84,7 @@ public class TrackSwitch : MonoBehaviour
             // This occurs when the item is flipped 180 degrees in comparison to this one 
             if (Vector3.Distance(transform.position, externalTrainTrack.transform.position) > 0.23f)
             {
-                Debug.Log("Not adjacent");
+                ////Debug.Log("Not adjacent");
                 continue;
             }
 
@@ -113,7 +113,7 @@ public class TrackSwitch : MonoBehaviour
                 }
             }
         }
-        Debug.Log("Now connected to " + ConnectedTracks.Count);
+        //Debug.Log("Now connected to " + ConnectedTracks.Count);
 
         TrackSwitch[] trackSwitches = FindObjectsOfType<TrackSwitch>();
         foreach (TrackSwitch externalTrackSwitch in trackSwitches)
@@ -125,7 +125,7 @@ public class TrackSwitch : MonoBehaviour
 
             if (externalTrackSwitch.gameObject.layer == LayerMask.NameToLayer("Ignore Raycast"))
             {
-                Debug.Log("Track only Visualization");
+                //Debug.Log("Track only Visualization");
                 continue;
             }
 
@@ -133,7 +133,7 @@ public class TrackSwitch : MonoBehaviour
             // This occurs when the item is flipped 180 degrees in comparison to this one 
             if (Vector3.Distance(transform.position, externalTrackSwitch.transform.position) > 0.23f)
             {
-                Debug.Log("Track Not adjacent");
+                ////Debug.Log("Track Not adjacent");
                 continue;
             }
 
@@ -161,7 +161,7 @@ public class TrackSwitch : MonoBehaviour
                 }
             }
             else{
-                Debug.Log("Track not close enough");
+                //Debug.Log("Track not close enough");
             }
         }
     }
@@ -171,7 +171,7 @@ public class TrackSwitch : MonoBehaviour
     public TrainTrack getClosestActiveTrainTrack(Vector3 trainPosition)
     {
         GameObject closestObj = new List<GameObject>() { Left, Right, Straight }.OrderBy((obj) => Vector3.Distance(trainPosition, obj.transform.position)).First();
-        Debug.LogWarning("Closest => "+closestObj.transform.name);
+        //Debug.LogWarning("Closest => "+closestObj.transform.name);
         if (closestObj == Straight)
         {
             if (StraightToRight.transform.gameObject.activeSelf)

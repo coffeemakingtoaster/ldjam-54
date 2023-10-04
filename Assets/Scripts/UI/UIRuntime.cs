@@ -68,10 +68,10 @@ public class UIRuntime : MonoBehaviour
     private void ExitApplicationClicked()
     {
         #if UNITY_EDITOR
-        Debug.Log("Quitting game..");
+        //Debug.Log("Quitting game..");
         UnityEditor.EditorApplication.isPlaying = false;
 #else
-        Debug.Log("Quitting game..");
+        //Debug.Log("Quitting game..");
 		Application.Quit ();
 #endif
     }

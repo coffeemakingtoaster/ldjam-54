@@ -129,7 +129,7 @@ public class UIGameRuntime : MonoBehaviour
         cash.text = "$ " + gs.getCurrentFunds();
     }
 
-    void Update()
+    public void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {

@@ -21127,6 +21127,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5dacbce729c0b6549b2769cb3bd17cef, type: 2}
   - {fileID: 11400000, guid: a85176372bdfb8141bdcfa6bd238fd7a, type: 2}
   - {fileID: 11400000, guid: e4d78294ab926f8459dbeb80f669e42a, type: 2}
+  - {fileID: 11400000, guid: 3103bcae486fa864399ecfbd99190474, type: 2}
+  - {fileID: 11400000, guid: b379d8cdbf9e77a4c8b19988ff5b7147, type: 2}
+  - {fileID: 11400000, guid: 6a8602f4d6737344bb436879edc96d4c, type: 2}
+  - {fileID: 11400000, guid: 24db265863b1d594d91a8f28a94ec583, type: 2}
 --- !u!4 &1783112195
 Transform:
   m_ObjectHideFlags: 0
@@ -21401,7 +21405,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1801080325}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
@@ -21535,7 +21539,7 @@ PrefabInstance:
     - target: {fileID: 6001674139645976340, guid: b6f4b8f8f7883f34a8d55eec5c3b404f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.924
+      value: -2.903
       objectReference: {fileID: 0}
     - target: {fileID: 6001674139645976340, guid: b6f4b8f8f7883f34a8d55eec5c3b404f,
         type: 3}

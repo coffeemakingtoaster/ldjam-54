@@ -99,13 +99,13 @@ public class TrainLocomotive : MonoBehaviour
         foreach(TrackSwitch trackSwitch in currentTrainTrack.ConnectedSwitches){
             trackSwitch.TryToFindAdjacent();
             validTracks.Add(trackSwitch.getClosestActiveTrainTrack(transform.position));
-            ////Debug.Log(trackSwitch.getClosestActiveTrainTrack(transform.position));
+            //Debug.Log(trackSwitch.getClosestActiveTrainTrack(transform.position));
         }
 
 
         foreach (TrainTrack possibleTrainTrack in validTracks)
         {
-            ////Debug.Log(possibleTrainTrack.transform.gameObject.name);
+            //Debug.Log(possibleTrainTrack.transform.gameObject.name);
             // This would just create a loop
             if (possibleTrainTrack.Equals(currentTrainTrack) || possibleTrainTrack.Equals(previousTrainTrack))
             {
@@ -125,8 +125,8 @@ public class TrainLocomotive : MonoBehaviour
 
             float startDistance = Vector3.Distance(transform.position, possibleTrainTrack.WayPoints[0]);
             float endDistance = Vector3.Distance(transform.position, possibleTrainTrack.WayPoints.Last());
-            ////Debug.Log("CurrentPosition: " + transform.position);
-            ////Debug.Log("Startdistance: " + startDistance.ToString() + " Enddistance: " + endDistance.ToString());
+            //Debug.Log("CurrentPosition: " + transform.position);
+            //Debug.Log("Startdistance: " + startDistance.ToString() + " Enddistance: " + endDistance.ToString());
             // Shortest distance to first waypoint of track            
             if (startDistance < shortestDistance)
             {
